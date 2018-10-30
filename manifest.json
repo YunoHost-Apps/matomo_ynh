@@ -1,0 +1,56 @@
+{
+    "name": "matomo",
+    "id": "matomo",
+    "packaging_format": 1,
+    "description": {
+        "en": " opensource analytics platform"
+    },
+    "version": "1.0",
+    "url": "https://matomo.org",
+    "license": "free",
+    "maintainer": {
+        "name": "Anmol Sharma",
+        "email": "anmol@datamol.org"
+    },
+    "requirements": {
+        "yunohost": ">= 3.0"
+    },
+    "multi_instance": true,
+    "services": [
+        "nginx",
+        "php5-fpm",
+        "mysql"
+    ],
+    "arguments": {
+        "install" : [
+            {
+                "name": "domain",
+                "type": "domain",
+                "ask": {
+                    "en": "Choose a domain name for matomo",
+                    "fr": "Choisissez un nom de domaine pour matomo"
+                },
+                "example": "example.com"
+            },
+            {
+                "name": "path",
+                "type": "path",
+                "ask": {
+                    "en": "Choose a path for matomo",
+                    "fr": "Choisissez un chemin pour matomo"
+                },
+                "example": "/example",
+                "default": "/example"
+            },
+            {
+                "name": "is_public",
+                "type": "boolean",
+                "ask": {
+                    "en": "Is it a public application?",
+                    "fr": "Est-ce une application publique ?"
+                },
+                "default": true
+            }
+        ]
+    }
+}
