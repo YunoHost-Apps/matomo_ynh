@@ -76,6 +76,13 @@ ynh_system_user_create $app
 # Restore permissions on app files
 chown -R $app: $final_path
 
+# Set up cron
+ynh_replace_string  "YNH_WWW_PATH" "$final_path" ../conf/cron
+ynh_replace_string "__USER__" "$app"  ../conf/cron
+ynh_replace_string "__DOMAIN__" "$domain"  ../conf/cron
+ynh_replace_string "__PATH__" "$path_url"  ../conf/cron
+sudo cp -f ../conf/cron /etc/cron.d/$app
+
 #=================================================
 # RESTORE THE PHP-FPM CONFIGURATION
 #=================================================
