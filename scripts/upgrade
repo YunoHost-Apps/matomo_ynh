@@ -17,10 +17,8 @@ app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get $app domain)
 path_url=$(ynh_app_setting_get $app path)
-admin=$(ynh_app_setting_get $app admin)
 is_public=$(ynh_app_setting_get $app is_public)
 final_path=$(ynh_app_setting_get $app final_path)
-language=$(ynh_app_setting_get $app language)
 db_name=$(ynh_app_setting_get $app db_name)
 
 #=================================================
@@ -74,8 +72,15 @@ path_url=$(ynh_normalize_url_path $path_url)
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
+# Create a temporary directory
+tmpdir="$(mktemp -d)"
+# Backup the config file in the temp dir
+cp -a "$final_path/config/config.ini.php" "$tmpdir/."
+
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source "$final_path"
+sudo cp -a "$tmpdir/config.ini.php" "${final_path}/config/."
+sudo rm -Rf "$tmpdir"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -88,7 +93,7 @@ ynh_add_nginx_config
 # UPGRADE DEPENDENCIES
 #=================================================
 
-ynh_install_app_dependencies deb1 deb2
+ynh_install_app_dependencies php7.0-curl php7.0-gd php7.0-cli php7.0-mysql php-xml php7.0-mbstring
 
 #=================================================
 # CREATE DEDICATED USER
@@ -105,39 +110,13 @@ ynh_system_user_create $app
 ynh_add_fpm_config
 
 #=================================================
-# SPECIFIC UPGRADE
-#=================================================
-# ...
-#=================================================
-
-### Verify the checksum of a file, stored by `ynh_store_file_checksum` in the install script.
-### And create a backup of this file if the checksum is different. So the file will be backed up if the admin had modified it.
-ynh_backup_if_checksum_is_different "$final_path/CONFIG_FILE"
-# Recalculate and store the checksum of the file for the next upgrade.
-ynh_store_file_checksum "$final_path/CONFIG_FILE"
-
-#=================================================
-# SETUP LOGROTATE
-#=================================================
-
-# Use logrotate to manage app-specific logfile(s)
-ynh_use_logrotate --non-append
-
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-
-# Create a dedicated systemd config
-ynh_add_systemd_config
-
-#=================================================
 # GENERIC FINALIZATION
 #=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
 
 # Set permissions on app files
-chown -R root: $final_path
+chown -R $app: $final_path
 
 #=================================================
 # SETUP SSOWAT

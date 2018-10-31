@@ -188,8 +188,8 @@ message=" $app was successfully installed :)
 Please open your $app domain: https://$domain$path_url
 Complete the registration process from the setup page displayed.
 Details for mysql database to be enterted while registration process:
-Database name: $app
-Database user: $app
+Database login: $app
+Database  name: $app
 Database password: $db_pwd
 
 If you are facing any problem or want to improve this app, please open a new issue here: https://github.com/YunoHost-Apps/matomo_ynh/issues"

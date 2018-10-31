@@ -49,30 +49,9 @@ ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf"
 #=================================================
 
 ynh_backup "/etc/php5/fpm/pool.d/$app.conf"
-ynh_backup "/etc/php5/fpm/conf.d/20-$app.ini"
 
 #=================================================
 # BACKUP THE MYSQL DATABASE
 #=================================================
 
 ynh_mysql_dump_db "$db_name" > db.sql
-
-#=================================================
-# SPECIFIC BACKUP
-#=================================================
-# BACKUP LOGROTATE
-#=================================================
-
-ynh_backup "/etc/logrotate.d/$app"
-
-#=================================================
-# BACKUP SYSTEMD
-#=================================================
-
-ynh_backup "/etc/systemd/system/$app.service"
-
-#=================================================
-# BACKUP A CRON FILE
-#=================================================
-
-ynh_backup "/etc/cron.d/$app"
