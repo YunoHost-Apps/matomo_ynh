@@ -55,3 +55,9 @@ ynh_backup "/etc/php5/fpm/pool.d/$app.conf"
 #=================================================
 
 ynh_mysql_dump_db "$db_name" > db.sql
+
+#=================================================
+# BACKUP A CRON FILE
+#=================================================
+
+ynh_backup "/etc/cron.d/$app"
