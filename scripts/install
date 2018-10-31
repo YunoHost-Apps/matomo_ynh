@@ -145,14 +145,14 @@ ynh_system_user_create $app
 ynh_add_fpm_config
 
 #=================================================
-# MODIFY A CONFIG FILE
+# MODIFY A CONFIG FILE (TO DO: Automate install)
 #=================================================
 
 ### `ynh_replace_string` is used to replace a string in a file.
 ### (It's compatible with sed regular expressions syntax)
-cp -f ../conf/config.ini.php "$final_path/config/config.ini.php"
-ynh_replace_string "__DB__"          "$db_name" "$final_path/config/config.ini.php"
-ynh_replace_string "__DB_PASSWORD__" "$db_pwd"  "$final_path/config/config.ini.php"
+## cp -f ../conf/config.ini.php "$final_path/config/config.ini.php"
+## ynh_replace_string "__DB__"          "$db_name" "$final_path/config/config.ini.php"
+## ynh_replace_string "__DB_PASSWORD__" "$db_pwd"  "$final_path/config/config.ini.php"
 
 
 #=================================================
@@ -179,3 +179,19 @@ fi
 #=================================================
 
 systemctl reload nginx
+
+#=================================================
+# SEND A README FOR THE ADMIN
+#=================================================
+
+message=" $app was successfully installed :)
+Please open your $app domain: https://$domain$path_url
+Complete the registration process from the setup page displayed.
+Details for mysql database to be enterted while registration process:
+Database name: $app
+Database user: $app
+Database password: $db_pwd
+
+If you are facing any problem or want to improve this app, please open a new issue here: https://github.com/YunoHost-Apps/matomo_ynh/issues"
+
+ynh_send_readme_to_admin "$message"
