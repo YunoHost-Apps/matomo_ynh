@@ -1,4 +1,4 @@
-SOURCE_URL=https://builds.piwik.org/piwik.zip
+SOURCE_URL=https://builds.piwik.org/piwik-3.6.1.zip
 SOURCE_SUM=a0e1e8b310b79ea60b282cdf1ca504f5b5c105209f52add82ca73e391052c1cf
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
