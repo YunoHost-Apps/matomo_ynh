@@ -5,7 +5,7 @@
     "description": {
         "en": " opensource analytics platform"
     },
-    "version": "3.8.1~ynh1",
+    "version": "3.9.1~ynh1",
     "url": "https://matomo.org",
     "license": "free",
     "maintainer": {
