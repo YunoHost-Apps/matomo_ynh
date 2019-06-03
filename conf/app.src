@@ -1,5 +1,5 @@
-SOURCE_URL=https://builds.piwik.org/piwik-3.8.1.zip
-SOURCE_SUM=2371f277303e8806b905ef9aac4399b5a8e48337519342c1e6773f3b35f4e5c9
+SOURCE_URL=https://builds.piwik.org/piwik-3.9.1.tar.gz
+SOURCE_SUM=61bdbc685ca58ea4a08f71837db181b5c203d7bc1cd53a7d03b5e7a359f10c81
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
 SOURCE_IN_SUBDIR=true
