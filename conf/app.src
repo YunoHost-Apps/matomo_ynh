@@ -1,5 +1,5 @@
-SOURCE_URL=https://builds.piwik.org/piwik-3.9.1.tar.gz
-SOURCE_SUM=61bdbc685ca58ea4a08f71837db181b5c203d7bc1cd53a7d03b5e7a359f10c81
+SOURCE_URL=https://builds.matomo.org/matomo-3.9.1.zip
+SOURCE_SUM=62f0d646873f1cc163f9cd2c3ee93c2c118ca182ddf1b8855e75c0c54cc378a5
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
 SOURCE_IN_SUBDIR=true
