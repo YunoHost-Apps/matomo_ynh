@@ -3,7 +3,7 @@
     "id": "matomo",
     "packaging_format": 1,
     "description": {
-        "en": " opensource analytics platform"
+        "en": "Opensource analytics platform"
     },
     "version": "3.9.1~ynh1",
     "url": "https://matomo.org",
