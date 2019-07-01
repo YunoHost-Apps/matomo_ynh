@@ -130,7 +130,7 @@ ynh_replace_string  --match_string="YNH_WWW_PATH" --replace_string="$final_path"
 ynh_replace_string --match_string="__USER__" --replace_string="$app"  --target_file="../conf/cron"
 ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain"  --target_file="../conf/cron"
 ynh_replace_string --match_string="__PATH__" --replace_string="$path_url"  --target_file="../conf/cron"
-sudo cp -f ../conf/cron /etc/cron.d/$app
+cp -f ../conf/cron /etc/cron.d/$app
 
 #=================================================
 # GENERIC FINALIZATION
