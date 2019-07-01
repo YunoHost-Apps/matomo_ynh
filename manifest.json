@@ -39,8 +39,8 @@
                     "en": "Choose a path for matomo",
                     "fr": "Choisissez un chemin pour matomo"
                 },
-                "example": "/example",
-                "default": "/example"
+                "example": "/matomo",
+                "default": "/matomo"
             },
             {
                 "name": "is_public",
