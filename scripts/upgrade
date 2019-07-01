@@ -81,15 +81,10 @@ path_url=$(ynh_normalize_url_path --path_url=$path_url)
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	# Create a temporary directory
-	tmpdir="$(mktemp -d)"
-	# Backup the config file in the temp dir
-	cp -a "$final_path/config/config.ini.php" "$tmpdir/."
-	
+	ynh_script_progression --message="Upgrading source files..." --time --weight=1
+
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path"
-	sudo cp -a "$tmpdir/config.ini.php" "${final_path}/config/."
-	sudo rm -Rf "$tmpdir"
 fi
 
 #=================================================
