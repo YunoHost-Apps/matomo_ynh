@@ -19,7 +19,7 @@ Matomo is the only analytics platform that gives you full control over your data
 - Easy to use
 - No data limits
 
-**Shipped version:** 3.9.1
+**Shipped version:** 3.10.0
 
 ## Screenshots
 
