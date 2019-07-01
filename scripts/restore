@@ -14,15 +14,13 @@ source /usr/share/yunohost/helpers
 # MANAGE SCRIPT FAILURE
 #=================================================
 
-ynh_clean_setup () {
-	true
-}
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
 
 #=================================================
 # LOAD SETTINGS
 #=================================================
+ynh_print_info --message="Loading settings..."
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -35,6 +33,7 @@ db_user=$db_name
 #=================================================
 # CHECK IF THE APP CAN BE RESTORED
 #=================================================
+ynh_print_info --message="Validating restoration parameters..."
 
 ynh_webpath_available --domain=$domain --path_url=$path_url \
 	|| ynh_die --message="Path not available: ${domain}${path_url}"
@@ -52,12 +51,14 @@ ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 #=================================================
 # RESTORE THE APP MAIN DIR
 #=================================================
+ynh_print_info --message="Restoring the app main directory..."
 
 ynh_restore_file --origin_path="$final_path"
 
 #=================================================
 # RECREATE THE DEDICATED USER
 #=================================================
+ynh_print_info --message="Recreating the dedicated system user..."
 
 # Create the dedicated user (if not existing)
 ynh_system_user_create --username=$app
@@ -80,6 +81,7 @@ ynh_restore_file --origin_path="/etc/php/7.0/fpm/pool.d/$app.conf"
 #=================================================
 # REINSTALL DEPENDENCIES
 #=================================================
+ynh_print_info --message="Reinstalling dependencies..."
 
 # Define and install dependencies
 ynh_install_app_dependencies $pkg_dependencies
@@ -87,6 +89,7 @@ ynh_install_app_dependencies $pkg_dependencies
 #=================================================
 # RESTORE THE MYSQL DATABASE
 #=================================================
+ynh_print_info --message="Restoring the MySQL database..."
 
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name --db_pwd=$db_pwd
@@ -103,6 +106,7 @@ ynh_restore_file --origin_path="/etc/cron.d/$app"
 #=================================================
 # RELOAD NGINX AND PHP-FPM
 #=================================================
+ynh_print_info --message="Reloading nginx web server and php-fpm..."
 
 ynh_systemd_action --service_name=php7.0-fpm --action=reload
 ynh_systemd_action --service_name=nginx --action=reload
@@ -111,3 +115,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
+ynh_print_info --message="Restoration completed for $app"

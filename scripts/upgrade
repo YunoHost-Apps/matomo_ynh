@@ -31,6 +31,7 @@ upgrade_type=$(ynh_check_app_version_changed)
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
+ynh_print_info --message="Ensuring downward compatibility..."
 
 # Fix is_public as a boolean value
 if [ "$is_public" = "Yes" ]; then
@@ -56,6 +57,7 @@ fi
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
+ynh_print_info --message="Backing up the app before upgrading (may take a while)..."
 
 # Backup the current version of the app
 ynh_backup_before_upgrade
@@ -81,7 +83,7 @@ path_url=$(ynh_normalize_url_path --path_url=$path_url)
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	ynh_script_progression --message="Upgrading source files..." --time --weight=1
+	ynh_print_info --message="Upgrading source files..." --time --weight=1
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path"
@@ -90,6 +92,7 @@ fi
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
+ynh_print_info --message="Upgrading nginx web server configuration..."
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
@@ -97,12 +100,14 @@ ynh_add_nginx_config
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
+ynh_print_info --message="Upgrading dependencies..."
 
 ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
+ynh_print_info --message="Making sure dedicated system user exists..."
 
 # Create a dedicated user (if not existing)
 ynh_system_user_create --username=$app
@@ -110,6 +115,7 @@ ynh_system_user_create --username=$app
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
+ynh_print_info --message="Upgrading php-fpm configuration..."
 
 # Create a dedicated php-fpm config
 ynh_add_fpm_config
@@ -119,12 +125,13 @@ ynh_add_fpm_config
 #=================================================
 # INSTALL COMPOSER AND DEPENDENCIES
 #=================================================
-
+ynh_print_info --message="Installating composer and dependencies..."
 ynh_install_composer --phpversion="7.0" --workdir=$final_path
 
 #=================================================
-# SETUP CRON
+# SETUP A CRON
 #=================================================
+ynh_print_info --message="Setuping a cron..."
 
 ynh_replace_string  --match_string="YNH_WWW_PATH" --replace_string="$final_path" --target_file="../conf/cron"
 ynh_replace_string --match_string="__USER__" --replace_string="$app"  --target_file="../conf/cron"
@@ -144,6 +151,7 @@ chown -R $app: $final_path
 #=================================================
 # SETUP SSOWAT
 #=================================================
+ynh_print_info --message="Upgrading SSOwat configuration..."
 
 # Make app public if necessary
 if [ $is_public -eq 1 ]
@@ -155,6 +163,7 @@ fi
 #=================================================
 # RELOAD NGINX
 #=================================================
+ynh_print_info --message="Reloading nginx web server..."
 
 ynh_systemd_action --service_name=nginx --action=reload
 
@@ -162,3 +171,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
+ynh_print_info --message="Upgrade of $app completed"

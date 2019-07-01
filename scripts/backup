@@ -14,15 +14,13 @@ source /usr/share/yunohost/helpers
 # MANAGE SCRIPT FAILURE
 #=================================================
 
-ynh_clean_setup () {
-	true
-}
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
 
 #=================================================
 # LOAD SETTINGS
 #=================================================
+ynh_print_info --message="Loading installation settings..."
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -35,24 +33,28 @@ db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 #=================================================
 # BACKUP THE APP MAIN DIR
 #=================================================
+ynh_print_info --message="Backing up the main app directory..."
 
 ynh_backup --src_path="$final_path"
 
 #=================================================
 # BACKUP THE NGINX CONFIGURATION
 #=================================================
+ynh_print_info --message="Backing up nginx web server configuration..."
 
 ynh_backup --src_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 
 #=================================================
 # BACKUP THE PHP-FPM CONFIGURATION
 #=================================================
+ynh_print_info --message="Backing up php-fpm configuration..."
 
 ynh_backup --src_path="/etc/php/7.0/fpm/pool.d/$app.conf"
 
 #=================================================
 # BACKUP THE MYSQL DATABASE
 #=================================================
+ynh_print_info --message="Backing up the MySQL database..."
 
 ynh_mysql_dump_db --database="$db_name" > db.sql
 
@@ -65,3 +67,5 @@ ynh_backup --src_path="/etc/cron.d/$app"
 #=================================================
 # END OF SCRIPT
 #=================================================
+
+ynh_print_info --message="Backup script completed for $app. (YunoHost will then actually copy those files to the archive)."
