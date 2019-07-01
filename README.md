@@ -1,13 +1,14 @@
 # Matomo app for Yunohost
 
 
-[![Integration level](https://dash.yunohost.org/integration/matomo.svg)](https://ci-apps.yunohost.org/jenkins/job/matomo%20%28Community%29/lastBuild/consoleFull)  
-[![Install matomo with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=matomo)
+[![Integration level](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo)  
+[![Install Matomo with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=matomo)
+
 
 > *This package allow you to install Matomo quickly and simply on a YunoHost server.  
 If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to know how to install and enjoy it.*
 
-## Matomo
+## Overview
 Matomo is the only analytics platform that gives you full control over your data and more:
 
 - Free open-source software
@@ -18,22 +19,50 @@ Matomo is the only analytics platform that gives you full control over your data
 - Easy to use
 - No data limits
 
-## Important links
-- [Yunohost project](https://yunohost.org)
-- [Matomo](https://matomo.org/)
+**Shipped version:** 3.9.1
+
+## Screenshots
+
+![](https://static.matomo.org/wp-content/uploads/2019/01/matomo-interface-new.webp)
+
+## Demo
+
+* [Official demo](https://demo.matomo.org)
 
 ## Configuration
+
 1. The app will require to complete the registration process after the instllation is complete by **visiting the domain** on  which Matomo is installed.
 1. The mysql database credentials will be sent to the **admin mail**. Fill these details while doing the registration process.
 1. No Ldap support yet for the app.
-<br><br>
 
+## Documentation
 
-The app is **Multi-instance**.
+ * Official documentation: https://matomo.org/docs
 
+#### Supported architectures
 
+* x86-64b - [![Build Status](https://ci-apps.yunohost.org/ci/logs/matomo%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/matomo/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/matomo%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/matomo/)
+* Jessie x86-64b - [![Build Status](https://ci-stretch.nohost.me/ci/logs/matomo%20%28Apps%29.svg)](https://ci-stretch.nohost.me/ci/apps/matomo/)
 
+## Links
 
+ * Report a bug: https://github.com/YunoHost-Apps/matomo_ynh/issues
+ * App website: https://matomo.org/
+ * Upstream app repository: https://github.com/matomo-org/matomo
+ * YunoHost website: https://yunohost.org/
 
+---
 
+Developers info
+----------------
+
+**Only if you want to use a testing branch for coding, instead of merging directly into master.**
+Please do your pull request to the [testing branch](https://github.com/YunoHost-Apps/matomo_ynh/tree/testing).
+
+To try the testing branch, please proceed like that.
+```
+sudo yunohost app install https://github.com/YunoHost-Apps/matomo_ynh/tree/testing --debug
+or
+sudo yunohost app upgrade matomo -u https://github.com/YunoHost-Apps/matomo_ynh/tree/testing --debug
 ```

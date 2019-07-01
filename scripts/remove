@@ -15,10 +15,19 @@ source /usr/share/yunohost/helpers
 
 app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get $app domain)
-db_name=$(ynh_app_setting_get $app db_name)
+domain=$(ynh_app_setting_get --app=$app --key=domain)
+db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
-final_path=$(ynh_app_setting_get $app final_path)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+
+#=================================================
+# STANDARD REMOVE
+#=================================================
+# REMOVE THE MYSQL DATABASE
+#=================================================
+
+# Remove a database if it exists, along with the associated user
+ynh_mysql_remove_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
 # REMOVE DEPENDENCIES
@@ -28,18 +37,11 @@ final_path=$(ynh_app_setting_get $app final_path)
 ynh_remove_app_dependencies
 
 #=================================================
-# REMOVE THE MYSQL DATABASE
-#=================================================
-
-# Remove a database if it exists, along with the associated user
-ynh_mysql_remove_db $db_user $db_name
-
-#=================================================
 # REMOVE APP MAIN DIR
 #=================================================
 
 # Remove the app directory securely
-ynh_secure_remove "$final_path"
+ynh_secure_remove --file="$final_path"
 
 #=================================================
 # REMOVE NGINX CONFIGURATION
@@ -71,4 +73,8 @@ ynh_secure_remove "/etc/cron.d/$app"
 #=================================================
 
 # Delete a system user
-ynh_system_user_delete $app
+ynh_system_user_delete --username=$app
+
+#=================================================
+# END OF SCRIPT
+#=================================================

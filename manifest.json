@@ -1,5 +1,5 @@
 {
-    "name": "matomo",
+    "name": "Matomo",
     "id": "matomo",
     "packaging_format": 1,
     "description": {
@@ -7,7 +7,7 @@
     },
     "version": "3.9.1~ynh1",
     "url": "https://matomo.org",
-    "license": "free",
+    "license": "GPL-3.0-or-later",
     "maintainer": {
         "name": "Anmol Sharma",
         "email": "anmol@datamol.org"
@@ -18,7 +18,7 @@
     "multi_instance": true,
     "services": [
         "nginx",
-        "php5-fpm",
+        "php7.0-fpm",
         "mysql"
     ],
     "arguments": {

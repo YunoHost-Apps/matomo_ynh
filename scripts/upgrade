@@ -15,11 +15,17 @@ source /usr/share/yunohost/helpers
 
 app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get $app domain)
-path_url=$(ynh_app_setting_get $app path)
-is_public=$(ynh_app_setting_get $app is_public)
-final_path=$(ynh_app_setting_get $app final_path)
-db_name=$(ynh_app_setting_get $app db_name)
+domain=$(ynh_app_setting_get --app=$app --key=domain)
+path_url=$(ynh_app_setting_get --app=$app --key=path)
+is_public=$(ynh_app_setting_get --app=$app --key=is_public)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+
+#=================================================
+# CHECK VERSION
+#=================================================
+
+upgrade_type=$(ynh_check_app_version_changed)
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
@@ -27,23 +33,23 @@ db_name=$(ynh_app_setting_get $app db_name)
 
 # Fix is_public as a boolean value
 if [ "$is_public" = "Yes" ]; then
-	ynh_app_setting_set $app is_public 1
+	ynh_app_setting_set --app=$app --key=is_public --value=1
 	is_public=1
 elif [ "$is_public" = "No" ]; then
-	ynh_app_setting_set $app is_public 0
+	ynh_app_setting_set --app=$app --key=is_public --value=0
 	is_public=0
 fi
 
 # If db_name doesn't exist, create it
-if [ -z $db_name ]; then
-	db_name=$(ynh_sanitize_dbid $app)
-	ynh_app_setting_set $app db_name $db_name
+if [ -z "$db_name" ]; then
+	db_name=$(ynh_sanitize_dbid --db_name=$app)
+	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 fi
 
 # If final_path doesn't exist, create it
-if [ -z $final_path ]; then
+if [ -z "$final_path" ]; then
 	final_path=/var/www/$app
-	ynh_app_setting_set $app final_path $final_path
+	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 fi
 
 #=================================================
@@ -64,7 +70,7 @@ ynh_abort_if_errors
 #=================================================
 
 # Normalize the URL path syntax
-path_url=$(ynh_normalize_url_path $path_url)
+path_url=$(ynh_normalize_url_path --path_url=$path_url)
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -72,15 +78,18 @@ path_url=$(ynh_normalize_url_path $path_url)
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-# Create a temporary directory
-tmpdir="$(mktemp -d)"
-# Backup the config file in the temp dir
-cp -a "$final_path/config/config.ini.php" "$tmpdir/."
-
-# Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source "$final_path"
-sudo cp -a "$tmpdir/config.ini.php" "${final_path}/config/."
-sudo rm -Rf "$tmpdir"
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+	# Create a temporary directory
+	tmpdir="$(mktemp -d)"
+	# Backup the config file in the temp dir
+	cp -a "$final_path/config/config.ini.php" "$tmpdir/."
+	
+	# Download, check integrity, uncompress and patch the source from app.src
+	ynh_setup_source --dest_dir="$final_path"
+	sudo cp -a "$tmpdir/config.ini.php" "${final_path}/config/."
+	sudo rm -Rf "$tmpdir"
+fi
 
 #=================================================
 # NGINX CONFIGURATION
@@ -93,14 +102,14 @@ ynh_add_nginx_config
 # UPGRADE DEPENDENCIES
 #=================================================
 
-ynh_install_app_dependencies php7.0-curl php7.0-gd php7.0-cli php7.0-mysql php-xml php7.0-mbstring
+ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create $app
+ynh_system_user_create --username=$app
 
 #=================================================
 # PHP-FPM CONFIGURATION
@@ -108,6 +117,18 @@ ynh_system_user_create $app
 
 # Create a dedicated php-fpm config
 ynh_add_fpm_config
+
+#=================================================
+# SPECIFIC UPGRADE
+#=================================================
+# SETUP CRON
+#=================================================
+
+ynh_replace_string  --match_string="YNH_WWW_PATH" --replace_string="$final_path" --target_file="../conf/cron"
+ynh_replace_string --match_string="__USER__" --replace_string="$app"  --target_file="../conf/cron"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain"  --target_file="../conf/cron"
+ynh_replace_string --match_string="__PATH__" --replace_string="$path_url"  --target_file="../conf/cron"
+sudo cp -f ../conf/cron /etc/cron.d/$app
 
 #=================================================
 # GENERIC FINALIZATION
@@ -118,13 +139,6 @@ ynh_add_fpm_config
 # Set permissions on app files
 chown -R $app: $final_path
 
-# Set up cron
-ynh_replace_string  "YNH_WWW_PATH" "$final_path" ../conf/cron
-ynh_replace_string "__USER__" "$app"  ../conf/cron
-ynh_replace_string "__DOMAIN__" "$domain"  ../conf/cron
-ynh_replace_string "__PATH__" "$path_url"  ../conf/cron
-sudo cp -f ../conf/cron /etc/cron.d/$app
-
 #=================================================
 # SETUP SSOWAT
 #=================================================
@@ -133,11 +147,16 @@ sudo cp -f ../conf/cron /etc/cron.d/$app
 if [ $is_public -eq 1 ]
 then
 	# unprotected_uris allows SSO credentials to be passed anyway
-	ynh_app_setting_set $app unprotected_uris "/"
+	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
 fi
 
 #=================================================
 # RELOAD NGINX
 #=================================================
 
-systemctl reload nginx
+ynh_systemd_action --service_name=nginx --action=reload
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
