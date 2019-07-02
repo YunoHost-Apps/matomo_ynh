@@ -83,7 +83,7 @@ path_url=$(ynh_normalize_url_path --path_url=$path_url)
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	ynh_print_info --message="Upgrading source files..." --time --weight=1
+	ynh_print_info --message="Upgrading source files..."
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path"
