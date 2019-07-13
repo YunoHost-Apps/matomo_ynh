@@ -57,7 +57,6 @@ Matomo is the only analytics platform that gives you full control over your data
 Developers info
 ----------------
 
-**Only if you want to use a testing branch for coding, instead of merging directly into master.**
 Please do your pull request to the [testing branch](https://github.com/YunoHost-Apps/matomo_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
