@@ -1,6 +1,6 @@
-SOURCE_URL=https://builds.matomo.org/matomo-3.9.1.zip
-SOURCE_SUM=62f0d646873f1cc163f9cd2c3ee93c2c118ca182ddf1b8855e75c0c54cc378a5
+SOURCE_URL=https://github.com/matomo-org/matomo/archive/3.10.0.tar.gz
+SOURCE_SUM=84ef1f5870ae19c12f19fe4a8aae2442bb6d72cfcd9607b0b0229fbae5e78fc6
 SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=zip
+SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true
 SOURCE_FILENAME=

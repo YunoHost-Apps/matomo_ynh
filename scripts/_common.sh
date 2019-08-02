@@ -1,6 +1,24 @@
 #!/bin/bash
 
-# ============= FUTURE YUNOHOST HELPER =============
+#=================================================
+# COMMON VARIABLES
+#=================================================
+
+# dependencies used by the app
+pkg_dependencies="php7.0-curl php7.0-gd php7.0-cli php7.0-mysql php-xml php7.0-mbstring"
+
+#=================================================
+# PERSONAL HELPERS
+#=================================================
+
+#=================================================
+# EXPERIMENTAL HELPERS
+#=================================================
+
+#=================================================
+# FUTURE OFFICIAL HELPERS
+#=================================================
+
 # Delete a file checksum from the app settings
 #
 # $app should be defined when calling this helper
