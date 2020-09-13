@@ -21,7 +21,7 @@ Matomo is the only analytics platform that gives you full control over your data
 
 ## Screenshots
 
-![](https://img.matomo.org/spai/w_720+q_lossless+ret_img+to_webp/https://static.matomo.org/wp-content/uploads/2020/06/website-graphics-2020-v5-1.png)
+![](https://img.matomo.org/spai/w_660+q_lossless+ret_img+to_webp/https://static.matomo.org/wp-content/uploads/2019/03/matomo-analytics-dashboard.png)
 
 ## Demo
 
@@ -36,6 +36,7 @@ Matomo is the only analytics platform that gives you full control over your data
 ## Documentation
 
  * Official documentation: https://matomo.org/docs
+ * YunoHost documentation: If specific documentation is needed, feel free to contribute.
 
 #### Supported architectures
 
