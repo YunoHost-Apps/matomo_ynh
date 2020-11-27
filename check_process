@@ -19,8 +19,6 @@
 		upgrade=1	from_commit=1d3e9f3dbf72a6a124c879fa549ab8107367e36a
 		backup_restore=1
 		multi_instance=1
-		# This test is no longer necessary since the version 2.7 (PR: https://github.com/YunoHost/yunohost/pull/304), you can still do it if your app could be installed with this version.
-		# incorrect_path=1
 		port_already_use=0
 		change_url=0
 ;;; Levels

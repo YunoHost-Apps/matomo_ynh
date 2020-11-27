@@ -6,7 +6,7 @@
         "en": "Open source analytics platform for measuring Web statistics",
         "fr": "Plateforme d'analyse open source de mesure de statistiques Web"
     },
-    "version": "3.14.1~ynh1",
+    "version": "4.0.1~ynh1",
     "url": "https://matomo.org",
     "license": "GPL-3.0-or-later",
     "maintainer": {
@@ -14,7 +14,7 @@
         "email": "anmol@datamol.org"
     },
     "requirements": {
-        "yunohost": ">= 3.8"
+        "yunohost": ">= 4.0.0"
     },
     "multi_instance": true,
     "services": [
