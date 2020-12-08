@@ -124,9 +124,9 @@ ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 ynh_script_progression --message="Setuping a cron..."
 
 ynh_replace_string  --match_string="YNH_WWW_PATH" --replace_string="$final_path" --target_file="../conf/cron"
-ynh_replace_string --match_string="__USER__" --replace_string="$app"  --target_file="../conf/cron"
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain"  --target_file="../conf/cron"
-ynh_replace_string --match_string="__PATH__" --replace_string="$path_url"  --target_file="../conf/cron"
+ynh_replace_string --match_string="__USER__" --replace_string="$app" --target_file="../conf/cron"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="../conf/cron"
+ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="../conf/cron"
 cp -f ../conf/cron /etc/cron.d/$app
 
 #=================================================
@@ -138,18 +138,6 @@ ynh_script_progression --message="Securing files and directories..."
 
 # Set permissions on app files
 chown -R $app: $final_path
-
-#=================================================
-# SETUP SSOWAT
-#=================================================
-ynh_script_progression --message="Upgrading SSOwat configuration..."
-
-# Make app public if necessary
-if [ $is_public -eq 1 ]
-then
-	# unprotected_uris allows SSO credentials to be passed anyway
-	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
-fi
 
 #=================================================
 # RELOAD NGINX
