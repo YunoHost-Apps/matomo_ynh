@@ -1,2 +1,2 @@
 MAILTO="admin"
-5 * * * * __USER__ /usr/bin/php YNH_WWW_PATH/console core:archive --url=https://__DOMAIN__/__PATH__ > /dev/null
+5 * * * * __USER__ /usr/bin/php__PHPVERSION__ __FINALPATH__/console core:archive --url=https://__DOMAIN__/__PATH__ > /dev/null
