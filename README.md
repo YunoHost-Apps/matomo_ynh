@@ -7,15 +7,7 @@
 If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
 
 ## Overview
-Matomo is the only analytics platform that gives you full control over your data and more:
-
-- Free open-source software
-- 100% data ownership
-- User privacy protection
-- User-centric insights
-- Customisable and extensible
-- Easy to use
-- No data limits
+Matomo is the leading Free/Libre open analytics platform. It is a full-featured PHP MySQL software program that you download and install on your own webserver. At the end of the five-minute installation process, you will be given a JavaScript code. Simply copy and paste this tag on websites you wish to track and access your analytics reports in real-time.
 
 **Shipped version:** 4.0.5
 
