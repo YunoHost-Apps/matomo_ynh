@@ -80,8 +80,26 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..."
 
+	# Create a temporary directory
+	tmpdir="$(mktemp -d)"
+	# Backup the config file in the temp dir
+	cp -a "$final_path/config/config.ini.php" "$tmpdir/config.ini.php"
+
+	# Remove the app directory securely
+	ynh_secure_remove --file=$final_path
+
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path"
+
+	#Copy the admin saved settings from tmp directory to final path	
+	cp -a "$tmpdir/config.ini.php" "$final_path/config/config.ini.php" 
+
+	# Remove the tmp directory securely
+	ynh_secure_remove --file="$tmpdir"
+
+	pushd "$final_path/console"
+		ynh_exec_as $app core:update
+	popd
 fi
 
 #=================================================
@@ -105,7 +123,7 @@ ynh_system_user_create --username=$app
 #=================================================
 ynh_script_progression --message="Upgrading PHP-FPM configuration..."
 
-# Create a dedicated php-fpm config
+# Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=medium --package="$extra_php_dependencies"
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
