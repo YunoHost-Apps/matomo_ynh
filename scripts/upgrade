@@ -97,11 +97,9 @@ then
 	# Remove the tmp directory securely
 	ynh_secure_remove --file="$tmpdir"
 
-	pushd "$final_path"
-		chown -R $app: $final_path/tmp/* 
-		./console core:update
+	pushd "$final_path/console"
+		ynh_exec_as $app core:update
 	popd
-
 fi
 
 #=================================================
@@ -125,7 +123,7 @@ ynh_system_user_create --username=$app
 #=================================================
 ynh_script_progression --message="Upgrading PHP-FPM configuration..."
 
-# Create a dedicated php-fpm config
+# Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
