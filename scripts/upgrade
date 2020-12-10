@@ -143,10 +143,11 @@ ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 #=================================================
 ynh_script_progression --message="Setuping a cron..."
 
-ynh_replace_string  --match_string="YNH_WWW_PATH" --replace_string="$final_path" --target_file="../conf/cron"
-ynh_replace_string --match_string="__USER__" --replace_string="$app" --target_file="../conf/cron"
+ynh_replace_string  --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="../conf/cron"
+ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="../conf/cron"
 ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="../conf/cron"
 ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="../conf/cron"
+ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion" --target_file="../conf/cron"
 cp -f ../conf/cron /etc/cron.d/$app
 
 #=================================================
