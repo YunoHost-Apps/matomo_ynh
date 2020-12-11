@@ -95,9 +95,6 @@ then
 	# Remove the tmp directory securely
 	ynh_secure_remove --file="$tmpdir"
 
-	pushd "$final_path"
-		ynh_exec_as $app ./console core:update
-	popd
 fi
 
 #=================================================
@@ -134,6 +131,8 @@ ynh_script_progression --message="Installating composer and dependencies..."
 
 ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 
+cd "$final_path" && ynh_exec_as $app ./console core:update
+
 #=================================================
 # SETUP A CRON
 #=================================================
@@ -144,6 +143,7 @@ ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_fil
 ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="../conf/cron"
 ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="../conf/cron"
 ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion" --target_file="../conf/cron"
+
 cp -f ../conf/cron /etc/cron.d/$app
 
 #=================================================
