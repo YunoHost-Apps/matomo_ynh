@@ -141,7 +141,7 @@ if [[ -f "$final_path/config/config.ini.php" ]]; then
 fi
 
 #=================================================
-# INSRALL MISSING ICONS
+# INSTALL MISSING ICONS
 #=================================================
 
 if [ ! "$(ls -A "$final_path/plugins/Morpheus/icons")" ]
