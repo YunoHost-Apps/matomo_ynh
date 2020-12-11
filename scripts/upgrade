@@ -151,18 +151,15 @@ fi
 #=================================================
 # SETUP A CRON
 #=================================================
-# ynh_script_progression --message="Setuping a cron..."
+ynh_script_progression --message="Setuping a cron..."
 
-# cron_path="/etc/cron.d/$app"
-# cp -a ../conf/matomo.cron "$cron_path"
-# chown root: "$cron_path"
-# chmod 644 "$cron_path"
+cp ../conf/matomo.cron /etc/cron.d/$app
 
-# ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="$cron_path"
-# ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="$cron_path"
-# ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$cron_path"
-# ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="$cron_path"
-# ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion" --target_file="$cron_path"
+ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion" --target_file="/etc/cron.d/$app"
 
 #=================================================
 # GENERIC FINALIZATION
