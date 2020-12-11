@@ -83,16 +83,16 @@ then
 	# Create a temporary directory
 	tmpdir="$(mktemp -d)"
 	# Backup the config file in the temp dir
-	cp -a "$final_path/config/config.ini.php" "$tmpdir/config.ini.php"
+	cp -a "$final_path/config" "$tmpdir"
 
 	# Remove the app directory securely
-	ynh_secure_remove --file=$final_path
+	ynh_secure_remove --file="$final_path"
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path"
 
 	#Copy the admin saved settings from tmp directory to final path	
-	cp -a "$tmpdir/config.ini.php" "$final_path/config/config.ini.php" 
+	cp -a "$tmpdir" "$final_path/config" 
 
 	# Remove the tmp directory securely
 	ynh_secure_remove --file="$tmpdir"

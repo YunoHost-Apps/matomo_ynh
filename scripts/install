@@ -113,11 +113,6 @@ ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion
 
 cp -f ../conf/cron /etc/cron.d/$app
 
-ynh_replace_string  --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="../conf/config.ini.php"
-ynh_replace_string --match_string="__DB_PASSWORD__" --replace_string="$db_pwd" --target_file="../conf/config.ini.php"
-
-cp -f ../conf/config.ini.php $final_path/config/config.ini.php
-
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
