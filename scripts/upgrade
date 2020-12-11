@@ -97,8 +97,8 @@ then
 	# Remove the tmp directory securely
 	ynh_secure_remove --file="$tmpdir"
 
-	pushd "$final_path/console"
-		ynh_exec_as $app core:update
+	pushd "$final_path"
+		ynh_exec_as $app ./console core:update
 	popd
 fi
 
