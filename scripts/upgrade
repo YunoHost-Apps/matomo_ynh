@@ -22,6 +22,7 @@ path_url=$(ynh_app_setting_get --app=$app --key=path)
 is_public=$(ynh_app_setting_get --app=$app --key=is_public)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # CHECK VERSION
@@ -93,7 +94,7 @@ then
 
 	ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 
-	#Copy the admin saved settings from tmp directory to final path	
+	# Copy the admin saved settings from tmp directory to final path	
 	cp -a "$tmpdir" "$final_path/config" 
 
 	# Remove the tmp directory securely
