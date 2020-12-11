@@ -81,20 +81,24 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..."
 
-	# Create a temporary directory
-	tmpdir="$(mktemp -d)"
-	# Backup the config file in the temp dir
-	cp -a "$final_path/config" "$tmpdir"
+	if [ -z "$final_path/config/config.ini.php" ]; then
+		ynh_setup_source --dest_dir="$final_path"
+	else
+		# Create a temporary directory
+		tmpdir="$(mktemp -d)"
 
-	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path"
+		# Backup the config file in the temp dir
+		cp -a "$final_path/config/config.ini.php" "$tmpdir/config.ini.php"
 
-	# Copy the admin saved settings from tmp directory to final path	
-	cp -a "$tmpdir" "$final_path/config" 
+		# Download, check integrity, uncompress and patch the source from app.src
+		ynh_setup_source --dest_dir="$final_path"
 
-	# Remove the tmp directory securely
-	ynh_secure_remove --file="$tmpdir"
+		# Copy the admin saved settings from tmp directory to final path	
+		cp -a "$tmpdir/config.ini.php" "$final_path/config/config.ini.php" 
 
+		# Remove the tmp directory securely
+		ynh_secure_remove --file="$tmpdir"
+	fi
 fi
 
 #=================================================
@@ -131,7 +135,10 @@ ynh_script_progression --message="Installating composer and dependencies..."
 
 ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 
-cd "$final_path" && ynh_exec_as $app ./console core:update
+if [ -z "$final_path/config/config.ini.php" ]; then
+	cd "$final_path"
+	ynh_exec_as $app ./console core:update
+fi
 
 #=================================================
 # SETUP A CRON
