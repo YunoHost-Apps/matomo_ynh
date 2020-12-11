@@ -124,7 +124,7 @@ ynh_system_user_create --username=$app
 ynh_script_progression --message="Upgrading PHP-FPM configuration..."
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --usage=low --footprint=medium --package="$extra_php_dependencies"
+ynh_add_fpm_config --package="$extra_php_dependencies"
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
@@ -141,7 +141,7 @@ ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 #=================================================
 ynh_script_progression --message="Setuping a cron..."
 
-ynh_replace_string  --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="../conf/cron"
+ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="../conf/cron"
 ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="../conf/cron"
 ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="../conf/cron"
 ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="../conf/cron"

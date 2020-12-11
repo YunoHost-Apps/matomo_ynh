@@ -88,7 +88,7 @@ ynh_system_user_create --username=$app
 ynh_script_progression --message="Configuring PHP-FPM..."
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --usage=low --footprint=medium --package="$extra_php_dependencies"
+ynh_add_fpm_config --package="$extra_php_dependencies"
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
@@ -149,9 +149,12 @@ ynh_systemd_action --service_name=nginx --action=reload
 ynh_script_progression --message="Sending a readme for the admin..."
 
 message="Matomo was successfully installed :)
+
 Please open your $app domain: https://$domain$path_url
+
 Complete the registration process from the setup page displayed.
-Details for mysql database to be enterted while registration process:
+Details for MySQL database to be enterted while registration process:
+
 Database login:    $app
 Database name:     $app
 Database password: $db_pwd
