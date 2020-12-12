@@ -147,6 +147,7 @@ fi
 if [ ! "$(ls -A "$final_path/plugins/Morpheus/icons")" ]
 then
     git clone https://github.com/matomo-org/matomo-icons.git "$final_path/plugins/Morpheus/icons" --quiet
+    chmod -R 755 "$final_path/plugins/Morpheus"
 fi
 
 #=================================================
