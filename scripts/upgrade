@@ -82,6 +82,11 @@ then
 	ynh_script_progression --message="Upgrading source files..."
 
 	if [[ ! -f "$final_path/config/config.ini.php" ]]; then
+		# config.ini.php is only created during the post-install process...
+		# it is therefore not present when the IC tests are carried out...
+		# This condition is only for CI test to go through the upgrade process
+		ynh_secure_remove --file="$final_path"
+		# Download, check integrity, uncompress and patch the source from app.src
 		ynh_setup_source --dest_dir="$final_path"
 	else
 		# Create a temporary directory
@@ -89,6 +94,9 @@ then
 
 		# Backup the config file in the temp dir
 		cp -a "$final_path/config/config.ini.php" "$tmpdir/config.ini.php"
+
+		# Remove the app directory securely
+		ynh_secure_remove --file="$final_path"
 
 		# Download, check integrity, uncompress and patch the source from app.src
 		ynh_setup_source --dest_dir="$final_path"
@@ -146,7 +154,8 @@ fi
 
 if [ ! "$(ls -A "$final_path/plugins/Morpheus/icons")" ]
 then
-    git clone https://github.com/matomo-org/matomo-icons.git "$final_path/plugins/Morpheus/icons" --quiet
+    #git clone https://github.com/matomo-org/matomo-icons.git "$final_path/plugins/Morpheus/icons" --quiet
+    ynh_setup_source --dest_dir="$final_path/plugins/Morpheus/icons" --source_id="icons"
     chmod -R 755 "$final_path/plugins/Morpheus"
 fi
 
