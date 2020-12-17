@@ -6,7 +6,7 @@
         "en": "Open source analytics platform for measuring Web statistics",
         "fr": "Plateforme d'analyse open source de mesure de statistiques Web"
     },
-    "version": "4.0.5~ynh1",
+    "version": "4.0.5~ynh2",
     "url": "https://matomo.org",
     "license": "GPL-3.0-or-later",
     "maintainer": {
@@ -49,6 +49,10 @@
                 "ask": {
                     "en": "Is it a public application?",
                     "fr": "Est-ce une application publique ?"
+                },
+                "help": {
+                    "en": "If enabled, Matomo will be accessible by people who do not have an account. This can be changed later via the webadmin.",
+                    "fr": "Si cette case est cochée, Matomo sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
                 },
                 "default": true
             }

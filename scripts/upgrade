@@ -22,6 +22,7 @@ path_url=$(ynh_app_setting_get --app=$app --key=path)
 is_public=$(ynh_app_setting_get --app=$app --key=is_public)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # CHECK VERSION
@@ -80,8 +81,32 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..."
 
-	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path"
+	if [[ ! -f "$final_path/config/config.ini.php" ]]; then
+		# config.ini.php is only created during the post-install process...
+		# it is therefore not present when the CI tests are carried out...
+		# This condition is only for CI test to go through the upgrade process
+		ynh_secure_remove --file="$final_path"
+		# Download, check integrity, uncompress and patch the source from app.src
+		ynh_setup_source --dest_dir="$final_path"
+	else
+		# Create a temporary directory
+		tmpdir="$(mktemp -d)"
+
+		# Backup the config file in the temp dir
+		cp -a "$final_path/config/config.ini.php" "$tmpdir/config.ini.php"
+
+		# Remove the app directory securely
+		ynh_secure_remove --file="$final_path"
+
+		# Download, check integrity, uncompress and patch the source from app.src
+		ynh_setup_source --dest_dir="$final_path"
+
+		# Copy the admin saved settings from tmp directory to final path	
+		cp -a "$tmpdir/config.ini.php" "$final_path/config/config.ini.php" 
+
+		# Remove the tmp directory securely
+		ynh_secure_remove --file="$tmpdir"
+	fi
 fi
 
 #=================================================
@@ -105,9 +130,8 @@ ynh_system_user_create --username=$app
 #=================================================
 ynh_script_progression --message="Upgrading PHP-FPM configuration..."
 
-# Create a dedicated php-fpm config
+# Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # SPECIFIC UPGRADE
@@ -118,16 +142,34 @@ ynh_script_progression --message="Installating composer and dependencies..."
 
 ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 
+if [[ -f "$final_path/config/config.ini.php" ]]; then
+	pushd "$final_path"
+		ynh_exec_as $app ./console core:update
+	popd
+fi
+
+#=================================================
+# INSTALL MISSING ICONS
+#=================================================
+
+if [ ! "$(ls -A "$final_path/plugins/Morpheus/icons")" ]
+then
+    ynh_setup_source --dest_dir="$final_path/plugins/Morpheus/icons" --source_id="icons"
+    chmod -R 755 "$final_path/plugins/Morpheus"
+fi
+
 #=================================================
 # SETUP A CRON
 #=================================================
 ynh_script_progression --message="Setuping a cron..."
 
-ynh_replace_string  --match_string="YNH_WWW_PATH" --replace_string="$final_path" --target_file="../conf/cron"
-ynh_replace_string --match_string="__USER__" --replace_string="$app" --target_file="../conf/cron"
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="../conf/cron"
-ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="../conf/cron"
-cp -f ../conf/cron /etc/cron.d/$app
+cp ../conf/cron /etc/cron.d/$app
+
+ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion" --target_file="/etc/cron.d/$app"
 
 #=================================================
 # GENERIC FINALIZATION

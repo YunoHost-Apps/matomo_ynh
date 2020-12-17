@@ -96,43 +96,26 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 # INSTALL COMPOSER AND DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Installing composer and dependencies..."
+ynh_script_progression --message="Installing Composer and dependencies..."
 
 ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
+
+# Install missing icons
+ynh_setup_source --dest_dir="$final_path/plugins/Morpheus/icons" --source_id="icons"
+chmod -R 755 "$final_path/plugins/Morpheus"
 
 #=================================================
 # SETUP A CRON
 #=================================================
 ynh_script_progression --message="Setuping a cron..."
 
-ynh_replace_string  --match_string="YNH_WWW_PATH" --replace_string="$final_path" --target_file="../conf/cron"
-ynh_replace_string --match_string="__USER__" --replace_string="$app" --target_file="../conf/cron"
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="../conf/cron"
-ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="../conf/cron"
-cp -f ../conf/cron /etc/cron.d/$app
+cp ../conf/cron /etc/cron.d/$app
 
-#=================================================
-# MODIFY A CONFIG FILE (TO DO: Automate install)
-#=================================================
-ynh_script_progression --message="Modifying a config file..."
-
-### `ynh_replace_string` is used to replace a string in a file.
-### (It's compatible with sed regular expressions syntax)
-## cp -f ../conf/config.ini.php "$final_path/config/config.ini.php"
-## ynh_replace_string "__DB__"          "$db_name" "$final_path/config/config.ini.php"
-## ynh_replace_string "__DB_PASSWORD__" "$db_pwd"  "$final_path/config/config.ini.php"
-
-#=================================================
-# STORE THE CONFIG FILE CHECKSUM
-#=================================================
-ynh_script_progression --message="Storing the config file checksum..."
-
-### `ynh_store_file_checksum` is used to store the checksum of a file.
-### That way, during the upgrade script, by using `ynh_backup_if_checksum_is_different`,
-### you can make a backup of this file before modifying it again if the admin had modified it.
-
-# Calculate and store the config file checksum into the app settings
-## ynh_store_file_checksum --file="$final_path/CONFIG_FILE"
+ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion" --target_file="/etc/cron.d/$app"
 
 #=================================================
 # GENERIC FINALIZATION
@@ -152,8 +135,6 @@ ynh_script_progression --message="Configuring SSOwat..."
 # Make app public if necessary or protect it
 if [ $is_public -eq 1 ]
 then
-	# Everyone can access the app.
-	# The "main" permission is automatically created before the install script.
 	ynh_permission_update --permission "main" --add "visitors"
 fi
 
@@ -169,12 +150,15 @@ ynh_systemd_action --service_name=nginx --action=reload
 #=================================================
 ynh_script_progression --message="Sending a readme for the admin..."
 
-message=" $app was successfully installed :)
+message="Matomo was successfully installed :)
+
 Please open your $app domain: https://$domain$path_url
+
 Complete the registration process from the setup page displayed.
-Details for mysql database to be enterted while registration process:
-Database login: $app
-Database  name: $app
+Details for MySQL database to be enterted while registration process:
+
+Database login:    $app
+Database name:     $app
 Database password: $db_pwd
 
 If you are facing any problem or want to improve this app, please open a new issue here: https://github.com/YunoHost-Apps/matomo_ynh/issues"
