@@ -144,6 +144,7 @@ ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 
 if [[ -f "$final_path/config/config.ini.php" ]]; then
 	pushd "$final_path"
+		chown -R www-data:www-data $final_path/tmp
 		ynh_exec_as $app ./console core:update
 	popd
 fi
