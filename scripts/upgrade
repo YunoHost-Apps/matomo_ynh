@@ -143,10 +143,7 @@ ynh_script_progression --message="Installating composer and dependencies..."
 ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 
 if [[ -f "$final_path/config/config.ini.php" ]]; then
-	pushd "$final_path"
-		chown -R $app:$app $final_path/tmp/*
-		ynh_exec_as $app ./console core:update
-	popd
+		php$phpversion $final_path/console core:update
 fi
 
 #=================================================
