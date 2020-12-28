@@ -117,6 +117,8 @@ ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --targ
 ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="/etc/cron.d/$app"
 ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion" --target_file="/etc/cron.d/$app"
 
+chmod 644 "/etc/cron.d/$app"
+
 #=================================================
 # GENERIC FINALIZATION
 #=================================================

@@ -100,6 +100,8 @@ ynh_script_progression --message="Restoring the cron file..."
 
 ynh_restore_file --origin_path="/etc/cron.d/$app"
 
+chmod 644 "/etc/cron.d/$app"
+
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
