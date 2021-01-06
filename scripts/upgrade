@@ -143,9 +143,7 @@ ynh_script_progression --message="Installating composer and dependencies..."
 ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 
 if [[ -f "$final_path/config/config.ini.php" ]]; then
-	pushd "$final_path"
-		ynh_exec_as $app ./console core:update
-	popd
+	php$phpversion $final_path/console core:update
 fi
 
 #=================================================
@@ -154,6 +152,7 @@ fi
 
 if [ ! "$(ls -A "$final_path/plugins/Morpheus/icons")" ]
 then
+	ynh_script_progression --message="Installating Morpheus icons..."
     ynh_setup_source --dest_dir="$final_path/plugins/Morpheus/icons" --source_id="icons"
     chmod -R 755 "$final_path/plugins/Morpheus"
 fi
@@ -179,7 +178,7 @@ ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion
 ynh_script_progression --message="Securing files and directories..."
 
 # Set permissions on app files
-chown -R $app: $final_path
+chown -R $app:$app $final_path
 
 #=================================================
 # RELOAD NGINX
