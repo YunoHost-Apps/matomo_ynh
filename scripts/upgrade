@@ -152,7 +152,7 @@ fi
 
 if [ ! "$(ls -A "$final_path/plugins/Morpheus/icons")" ]
 then
-	ynh_script_progression --message="Installating Morpheus icons..."
+	  ynh_script_progression --message="Installating Morpheus icons..."
     ynh_setup_source --dest_dir="$final_path/plugins/Morpheus/icons" --source_id="icons"
     chmod -R 755 "$final_path/plugins/Morpheus"
 fi
