@@ -57,6 +57,13 @@ if [ -z "$final_path" ]; then
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 fi
 
+# Cleaning legacy permissions
+if ynh_legacy_permissions_exists; then
+	ynh_legacy_permissions_delete_all
+
+	ynh_app_setting_delete --app=$app --key=is_public
+fi
+
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
@@ -152,7 +159,7 @@ fi
 
 if [ ! "$(ls -A "$final_path/plugins/Morpheus/icons")" ]
 then
-	  ynh_script_progression --message="Installating Morpheus icons..."
+	ynh_script_progression --message="Installating Morpheus icons..."
     ynh_setup_source --dest_dir="$final_path/plugins/Morpheus/icons" --source_id="icons"
     chmod -R 755 "$final_path/plugins/Morpheus"
 fi
@@ -178,7 +185,7 @@ ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion
 ynh_script_progression --message="Securing files and directories..."
 
 # Set permissions on app files
-chown -R $app:$app $final_path
+chown -R $app: $final_path
 
 #=================================================
 # RELOAD NGINX
