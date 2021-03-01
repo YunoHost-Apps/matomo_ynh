@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/matomo-org/matomo/archive/4.2.0.tar.gz
-SOURCE_SUM=6b452bc2c1f7c4eb0427ae92467deea120f7b5aa51f43b741b5cdf9f934c3e4d
+SOURCE_URL=https://github.com/matomo-org/matomo/archive/4.2.1.tar.gz
+SOURCE_SUM=e84b86186ef0924b4d4479ec3162bbc9cb30e430b3a55a7f6d8a08e84704b33f
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true
