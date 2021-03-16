@@ -30,7 +30,7 @@ Matomo is the leading Free/Libre open analytics platform. It is a full-featured 
 ## Documentation
 
  * Official documentation: https://matomo.org/docs
- * YunoHost documentation: https://yunohost.org/#/app_matomo
+ * YunoHost documentation: https://yunohost.org/en/app_matomo
 
 #### Supported architectures
 

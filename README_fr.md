@@ -30,7 +30,7 @@ Matomo est une plateforme d'analyse open source de mesure de statistiques Web. I
 ## Documentation
 
  * Documentation officielle : https://matomo.org/docs
- * Documentation YunoHost : https://yunohost.org/#/app_matomo_fr
+ * Documentation YunoHost : https://yunohost.org/fr/app_matomo
 
 #### Architectures supportées
 
