@@ -34,8 +34,8 @@ Matomo est une plateforme d'analyse open source de mesure de statistiques Web. I
 
 #### Architectures supportées
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/matomo%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/matomo/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/matomo%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/matomo/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/matomo.svg)](https://ci-apps.yunohost.org/ci/apps/matomo/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/matomo.svg)](https://ci-apps-arm.yunohost.org/ci/apps/matomo/)
 
 ## Liens
 
