@@ -6,7 +6,7 @@
 *[Lire ce readme en français.](./README_fr.md)*
 
 > *This package allows you to install Matomo quickly and simply on a YunoHost server.  
-If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
+If you don't have YunoHost, please consult [the guide](https://yunohost.org/install) to learn how to install it.*
 
 ## Overview
 Matomo is the leading Free/Libre open analytics platform. It is a full-featured PHP MySQL software program that you download and install on your own webserver. At the end of the five-minute installation process, you will be given a JavaScript code. Simply copy and paste this tag on websites you wish to track and access your analytics reports in real-time.
@@ -30,12 +30,12 @@ Matomo is the leading Free/Libre open analytics platform. It is a full-featured 
 ## Documentation
 
  * Official documentation: https://matomo.org/docs
- * YunoHost documentation: https://yunohost.org/#/app_matomo
+ * YunoHost documentation: https://yunohost.org/en/app_matomo
 
 #### Supported architectures
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/matomo%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/matomo/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/matomo%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/matomo/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/matomo.svg)](https://ci-apps.yunohost.org/ci/apps/matomo/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/matomo.svg)](https://ci-apps-arm.yunohost.org/ci/apps/matomo/)
 
 ## Links
 
