@@ -119,6 +119,8 @@ ynh_script_progression --message="Securing files and directories..."
 
 # Set permissions to app files
 chown -R $app: $final_path
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
 
 #=================================================
 # SETUP SSOWAT
