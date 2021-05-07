@@ -11,7 +11,7 @@ Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/install) 
 ## Vue d'ensemble
 Matomo est une plateforme d'analyse open source de mesure de statistiques Web. Il s'agit d'un logiciel PHP MySQL complet que vous téléchargez et installez sur votre propre serveur Web. À la fin du processus d'installation de cinq minutes, vous recevrez un code JavaScript. Copiez et collez simplement cette balise sur les sites Web que vous souhaitez suivre et accédez à vos rapports d'analyse en temps réel.
 
-**Version incluse :** 4.2.1
+**Version incluse :** 4.3.0
 
 ## Captures d'écran
 
