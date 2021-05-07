@@ -97,17 +97,9 @@ fi
 #=================================================
 ynh_script_progression --message="Setuping a cron..."
 
-#cp ../conf/cron /etc/cron.d/$app
-
 path=$new_path
 domain=$new_domain
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
-
-# ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="/etc/cron.d/$app"
-# ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="/etc/cron.d/$app"
-# ynh_replace_string --match_string="__DOMAIN__" --replace_string="$new_domain" --target_file="/etc/cron.d/$app"
-# ynh_replace_string --match_string="__PATH__" --replace_string="$new_path" --target_file="/etc/cron.d/$app"
-# ynh_replace_string --match_string="__PHPVERSION__" --replace_string="$phpversion" --target_file="/etc/cron.d/$app"
 
 #=================================================
 # RELOAD NGINX
