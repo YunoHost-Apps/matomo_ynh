@@ -7,7 +7,6 @@
 #=================================================
 
 source _common.sh
-source ynh_composer__2
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -79,30 +78,11 @@ then
 	ynh_script_progression --message="Upgrading source files..."
 
 	if [[ ! -f "$final_path/config/config.ini.php" ]]; then
-		# config.ini.php is only created during the post-install process...
-		# it is therefore not present when the CI tests are carried out...
-		# This condition is only for CI test to go through the upgrade process
-		ynh_secure_remove --file="$final_path"
 		# Download, check integrity, uncompress and patch the source from app.src
 		ynh_setup_source --dest_dir="$final_path"
 	else
-		# Create a temporary directory
-		tmpdir="$(mktemp -d)"
-
-		# Backup the config file in the temp dir
-		cp -a "$final_path/config/config.ini.php" "$tmpdir/config.ini.php"
-
-		# Remove the app directory securely
-		ynh_secure_remove --file="$final_path"
-
 		# Download, check integrity, uncompress and patch the source from app.src
-		ynh_setup_source --dest_dir="$final_path" #--keep="foo bar" to integrate when https://github.com/YunoHost/yunohost/pull/1200 is upstream
-
-		# Copy the admin saved settings from tmp directory to final path	
-		cp -a "$tmpdir/config.ini.php" "$final_path/config/config.ini.php" 
-
-		# Remove the tmp directory securely
-		ynh_secure_remove --file="$tmpdir"
+		ynh_setup_source --dest_dir="$final_path" --keep="$final_path/config/config.ini.php"
 	fi
 fi
 
@@ -169,7 +149,9 @@ ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 ynh_script_progression --message="Securing files and directories..."
 
 # Set permissions on app files
-chown -R $app: $final_path
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
 
 #=================================================
 # RELOAD NGINX

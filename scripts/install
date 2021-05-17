@@ -7,7 +7,6 @@
 #=================================================
 
 source _common.sh
-source ynh_composer__2
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -118,7 +117,9 @@ ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 ynh_script_progression --message="Securing files and directories..."
 
 # Set permissions to app files
-chown -R $app: $final_path
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
 
 #=================================================
 # SETUP SSOWAT

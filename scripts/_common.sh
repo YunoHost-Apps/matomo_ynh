@@ -8,6 +8,9 @@ YNH_PHP_VERSION="7.3"
 
 extra_php_dependencies="php${YNH_PHP_VERSION}-curl php${YNH_PHP_VERSION}-gd php${YNH_PHP_VERSION}-cli php${YNH_PHP_VERSION}-mysql php${YNH_PHP_VERSION}-xml php${YNH_PHP_VERSION}-mbstring"
 
+# Composer version
+composer_version=2.0.13
+
 #=================================================
 # PERSONAL HELPERS
 #=================================================
@@ -76,19 +79,3 @@ $(yunohost tools diagnosis | grep -B 100 "services:" | sed '/services:/d')"
 	# Send the email to the recipients
 	echo "$mail_message" | $mail_bin -a "Content-Type: text/plain; charset=UTF-8" -s "$mail_subject" "$recipients"
 }
-
-
-
-# Execute a command as another user
-# usage: ynh_exec_as USER COMMAND [ARG ...]
-ynh_exec_as() {
-  local USER=$1
-  shift 1
-
-  if [[ $USER = $(whoami) ]]; then
-    eval "$@"
-  else
-    sudo -u "$USER" "$@"
-  fi
-}
-
