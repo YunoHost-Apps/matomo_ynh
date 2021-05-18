@@ -78,11 +78,31 @@ then
 	ynh_script_progression --message="Upgrading source files..."
 
 	if [[ ! -f "$final_path/config/config.ini.php" ]]; then
-		# Download, check integrity, uncompress and patch the source from app.src
+		# config.ini.php is only created during the post-install process...
+		# it is therefore not present when the CI tests are carried out...
+		# This condition is only for CI test to go through the upgrade process
 		ynh_setup_source --dest_dir="$final_path"
 	else
+		# Create a temporary directory
+		tmpdir="$(mktemp -d)"
+
+		# Backup the config file in the temp dir
+		cp -a "$final_path/config/config.ini.php" "$tmpdir/config.ini.php"
+
+		# Remove the app directory securely
+		ynh_secure_remove --file="$final_path"
+
 		# Download, check integrity, uncompress and patch the source from app.src
-		ynh_setup_source --dest_dir="$final_path" --keep="$final_path/config/config.ini.php"
+		ynh_setup_source --dest_dir="$final_path" #--keep="foo bar" to integrate when https://github.com/YunoHost/yunohost/pull/1200 is upstream
+
+		# Copy the admin saved settings from tmp directory to final path	
+		cp -a "$tmpdir/config.ini.php" "$final_path/config/config.ini.php" 
+
+		# Remove the tmp directory securely
+		ynh_secure_remove --file="$tmpdir"
+		
+		# Download, check integrity, uncompress and patch the source from app.src
+		#ynh_setup_source --dest_dir="$final_path" --keep="$final_path/config/config.ini.php"
 	fi
 fi
 
