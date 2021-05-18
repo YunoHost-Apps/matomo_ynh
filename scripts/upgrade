@@ -84,16 +84,7 @@ then
 		ynh_setup_source --dest_dir="$final_path"
 	else
 		# Download, check integrity, uncompress and patch the source from app.src
-		ynh_setup_source --dest_dir="$final_path" #--keep="foo bar" to integrate when https://github.com/YunoHost/yunohost/pull/1200 is upstream
-
-		# Copy the admin saved settings from tmp directory to final path	
-		cp -a "$tmpdir/config.ini.php" "$final_path/config/config.ini.php" 
-
-		# Remove the tmp directory securely
-		ynh_secure_remove --file="$tmpdir"
-
-		# Download, check integrity, uncompress and patch the source from app.src
-		#ynh_setup_source --dest_dir="$final_path" --keep="$final_path/config/config.ini.php"
+		ynh_setup_source --dest_dir="$final_path" --keep="$final_path/config/config.ini.php"
 	fi
 fi
 
@@ -130,14 +121,7 @@ ynh_script_progression --message="Installating composer and dependencies..."
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-
-ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
-
-# if [[ -f "$final_path/config/config.ini.php" ]]; then
-# 	php$phpversion $final_path/console core:update -n
-# fi
-
-
+	ynh_install_composer
 	php$phpversion $final_path/console core:update -n
 fi
 
