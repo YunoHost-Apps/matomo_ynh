@@ -58,7 +58,7 @@ ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 #=================================================
 # SETUP MYSQL
 #=================================================
-ynh_script_progression --message="Setuping MySQL..."
+ynh_script_progression --message="Configuring MySQL..."
 
 ynh_replace_string --match_string="max_allowed_packet = 16M" --replace_string="max_allowed_packet = 64M" --target_file="/etc/mysql/my.cnf"
 
