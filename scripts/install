@@ -121,6 +121,7 @@ ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 #=================================================
 ynh_script_progression --message="Setuping a configuration file..."
 
+salt="$(ynh_string_random --length=30)"
 ynh_add_config --template="../conf/config.ini.php" --destination="$final_path/config/config.ini.php"
 
 #=================================================
