@@ -7,3 +7,9 @@ password = "__DB_PWD__"
 dbname = "__DB_NAME__"
 tables_prefix = "matomo_"
 charset = "utf8mb4"
+
+[General]
+force_ssl = 1
+salt = "__SALT__"
+trusted_hosts[] = "__DOMAIN__"
+trusted_hosts[] = "WWW.__DOMAIN__"

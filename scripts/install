@@ -56,6 +56,13 @@ ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
+# SETUP MYSQL
+#=================================================
+ynh_script_progression --message="Setuping MySQL..."
+
+ynh_replace_string --match_string="max_allowed_packet = 16M" --replace_string="max_allowed_packet = 64M" --target_file="/etc/mysql/my.cnf"
+
+#=================================================
 # CREATE DEDICATED USER
 #=================================================
 ynh_script_progression --message="Configuring system user..."
@@ -96,7 +103,7 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 ynh_script_progression --message="Installing Composer and dependencies..."
 
-ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
+ynh_install_composer #--phpversion="$phpversion" --workdir="$final_path"
 
 # Install missing icons
 ynh_setup_source --dest_dir="$final_path/plugins/Morpheus/icons" --source_id="icons"
@@ -108,6 +115,13 @@ chmod -R 755 "$final_path/plugins/Morpheus"
 ynh_script_progression --message="Setuping a cron..."
 
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
+
+#=================================================
+# SETUP A CRON
+#=================================================
+ynh_script_progression --message="Setuping a configuration file..."
+
+ynh_add_config --template="../conf/config.ini.php" --destination="$final_path/config/config.ini.php"
 
 #=================================================
 # GENERIC FINALIZATION
