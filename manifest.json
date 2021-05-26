@@ -6,8 +6,16 @@
         "en": "Open source analytics platform for measuring Web statistics",
         "fr": "Plateforme d'analyse open source de mesure de statistiques Web"
     },
-    "version": "4.3.0~ynh1",
+    "version": "4.3.1~ynh1",
     "url": "https://matomo.org",
+    "upstream": {
+        "license": "GPL-3.0-or-later",
+        "website": "https://matomo.org",
+        "demo": "https://demo.matomo.org",
+        "admindoc": "https://matomo.org/docs",
+        "userdoc": "https://yunohost.org/en/app_matomo",
+        "code": "https://github.com/matomo-org/matomo"
+    },
     "license": "GPL-3.0-or-later",
     "maintainer": {
         "name": "Anmol Sharma",
