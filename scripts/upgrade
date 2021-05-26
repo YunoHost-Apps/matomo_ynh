@@ -125,8 +125,10 @@ ynh_script_progression --message="Installating composer and dependencies..."
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	ynh_install_composer
+	ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
+	if [[ -f "$final_path/config/config.ini.php" ]]; then
 	php$phpversion $final_path/console core:update -n
+	fi
 fi
 
 #=================================================
