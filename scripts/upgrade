@@ -7,7 +7,6 @@
 #=================================================
 
 source _common.sh
-source ynh_composer__2
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -55,6 +54,14 @@ if ynh_legacy_permissions_exists; then
 fi
 
 #=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Making sure dedicated system user exists..."
+
+# Create a dedicated user (if not existing)
+ynh_system_user_create --username=$app --home_dir="$final_path"
+
+#=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
 ynh_script_progression --message="Backing up Matomo before upgrading (may take a while)..."
@@ -82,29 +89,16 @@ then
 		# config.ini.php is only created during the post-install process...
 		# it is therefore not present when the CI tests are carried out...
 		# This condition is only for CI test to go through the upgrade process
-		ynh_secure_remove --file="$final_path"
-		# Download, check integrity, uncompress and patch the source from app.src
 		ynh_setup_source --dest_dir="$final_path"
 	else
-		# Create a temporary directory
-		tmpdir="$(mktemp -d)"
-
-		# Backup the config file in the temp dir
-		cp -a "$final_path/config/config.ini.php" "$tmpdir/config.ini.php"
-
-		# Remove the app directory securely
-		ynh_secure_remove --file="$final_path"
-
 		# Download, check integrity, uncompress and patch the source from app.src
-		ynh_setup_source --dest_dir="$final_path" #--keep="foo bar" to integrate when https://github.com/YunoHost/yunohost/pull/1200 is upstream
-
-		# Copy the admin saved settings from tmp directory to final path	
-		cp -a "$tmpdir/config.ini.php" "$final_path/config/config.ini.php" 
-
-		# Remove the tmp directory securely
-		ynh_secure_remove --file="$tmpdir"
+		ynh_setup_source --dest_dir="$final_path" --keep="$final_path/config/config.ini.php"
 	fi
 fi
+
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -113,14 +107,6 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..."
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..."
-
-# Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app
 
 #=================================================
 # PHP-FPM CONFIGURATION
@@ -137,10 +123,12 @@ ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencie
 #=================================================
 ynh_script_progression --message="Installating composer and dependencies..."
 
-ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
-
-if [[ -f "$final_path/config/config.ini.php" ]]; then
-	php$phpversion $final_path/console core:update
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+	ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
+	if [[ -f "$final_path/config/config.ini.php" ]]; then
+	php$phpversion $final_path/console core:update -n
+	fi
 fi
 
 #=================================================
@@ -160,16 +148,6 @@ fi
 ynh_script_progression --message="Setuping a cron..."
 
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
-
-#=================================================
-# GENERIC FINALIZATION
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-ynh_script_progression --message="Securing files and directories..."
-
-# Set permissions on app files
-chown -R $app: $final_path
 
 #=================================================
 # RELOAD NGINX
