@@ -68,7 +68,7 @@ ynh_replace_string --match_string="max_allowed_packet = 16M" --replace_string="m
 ynh_script_progression --message="Configuring system user..."
 
 # Create a system user
-ynh_system_user_create --username=$app
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
