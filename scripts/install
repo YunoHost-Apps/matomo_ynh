@@ -95,10 +95,6 @@ ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencie
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
-# SPECIFIC SETUP
-#=================================================
-
-#=================================================
 # SETUP A CRON
 #=================================================
 ynh_script_progression --message="Setuping a cron..."

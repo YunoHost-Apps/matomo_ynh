@@ -91,8 +91,19 @@ then
 		# This condition is only for CI test to go through the upgrade process
 		ynh_setup_source --dest_dir="$final_path"
 	else
+		# Create a temporary directory
+		tmpdir="$(mktemp -d)"
+
+		cp -a "$final_path/config/config.ini.php" "$tmpdir/config.ini.php"
+		# Remove the app directory securely
+		ynh_secure_remove --file=$final_path
 		# Download, check integrity, uncompress and patch the source from app.src
-		ynh_setup_source --dest_dir="$final_path" --keep="$final_path/config/config.ini.php"
+		ynh_setup_source --dest_dir="$final_path"
+		cp -a "$tmpdir/config_inc.php" "$final_path/config/config_inc.php"
+		# Remove the tmp directory securely
+		ynh_secure_remove --file="$tmpdir"
+
+		php$phpversion $final_path/console core:update -n
 	fi
 fi
 
@@ -115,10 +126,6 @@ ynh_script_progression --message="Upgrading PHP-FPM configuration..."
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
-
-#=================================================
-# SPECIFIC UPGRADE
-#=================================================
 
 #=================================================
 # SETUP A CRON
