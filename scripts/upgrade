@@ -119,28 +119,6 @@ ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencie
 #=================================================
 # SPECIFIC UPGRADE
 #=================================================
-# INSTALL COMPOSER AND DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Installating composer and dependencies..."
-
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
-	if [[ -f "$final_path/config/config.ini.php" ]]; then
-	php$phpversion $final_path/console core:update -n
-	fi
-fi
-
-#=================================================
-# INSTALL MISSING ICONS
-#=================================================
-
-if [ ! "$(ls -A "$final_path/plugins/Morpheus/icons")" ]
-then
-	ynh_script_progression --message="Installating Morpheus icons..."
-    ynh_setup_source --dest_dir="$final_path/plugins/Morpheus/icons" --source_id="icons"
-    chmod -R 755 "$final_path/plugins/Morpheus"
-fi
 
 #=================================================
 # SETUP A CRON
