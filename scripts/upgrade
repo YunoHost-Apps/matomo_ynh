@@ -48,6 +48,11 @@ if [ -z "$final_path" ]; then
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 fi
 
+# If admin doesn't exist
+if [ -z "$admin" ]; then
+	email=root@$domain
+fi
+
 # Cleaning legacy permissions
 if ynh_legacy_permissions_exists; then
 	ynh_legacy_permissions_delete_all
