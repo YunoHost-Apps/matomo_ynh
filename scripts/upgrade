@@ -103,7 +103,7 @@ then
 		# Remove the tmp directory securely
 		ynh_secure_remove --file="$tmpdir"
 
-		php$phpversion $final_path/console core:update -n
+		ynh_exec_as $app php${phpversion} $final_path/console core:update -n
 	fi
 fi
 
