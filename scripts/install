@@ -22,6 +22,8 @@ ynh_abort_if_errors
 
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
+admin=$YNH_APP_ARG_ADMIN
+email=$(ynh_user_get_info --username=$admin --key=mail)
 is_public=$YNH_APP_ARG_IS_PUBLIC
 
 app=$YNH_APP_INSTANCE_NAME
@@ -93,10 +95,6 @@ ynh_script_progression --message="Configuring PHP-FPM..."
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
-
-#=================================================
-# SPECIFIC SETUP
-#=================================================
 
 #=================================================
 # SETUP A CRON

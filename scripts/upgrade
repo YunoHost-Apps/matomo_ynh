@@ -21,6 +21,8 @@ path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+admin=$YNH_APP_ARG_ADMIN
+email=$(ynh_user_get_info --username=$admin --key=mail)
 
 #=================================================
 # CHECK VERSION
@@ -44,6 +46,11 @@ fi
 if [ -z "$final_path" ]; then
 	final_path=/var/www/$app
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+fi
+
+# If admin doesn't exist
+if [ -z "$admin" ]; then
+	email=root@$domain
 fi
 
 # Cleaning legacy permissions
@@ -91,8 +98,19 @@ then
 		# This condition is only for CI test to go through the upgrade process
 		ynh_setup_source --dest_dir="$final_path"
 	else
+		# Create a temporary directory
+		tmpdir="$(mktemp -d)"
+
+		cp -a "$final_path/config/config.ini.php" "$tmpdir/config.ini.php"
+		# Remove the app directory securely
+		ynh_secure_remove --file=$final_path
 		# Download, check integrity, uncompress and patch the source from app.src
-		ynh_setup_source --dest_dir="$final_path" --keep="$final_path/config/config.ini.php"
+		ynh_setup_source --dest_dir="$final_path"
+		cp -a "$tmpdir/config.ini.php" "$final_path/config/config.ini.php"
+		# Remove the tmp directory securely
+		ynh_secure_remove --file="$tmpdir"
+
+		ynh_exec_as $app php${phpversion} $final_path/console core:update -n
 	fi
 fi
 
@@ -117,15 +135,13 @@ ynh_script_progression --message="Upgrading PHP-FPM configuration..."
 ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
 
 #=================================================
-# SPECIFIC UPGRADE
-#=================================================
-
-#=================================================
 # SETUP A CRON
 #=================================================
 ynh_script_progression --message="Setuping a cron..."
 
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
+chown root: "/etc/cron.d/$app"
+chmod 644 "/etc/cron.d/$app"
 
 #=================================================
 # RELOAD NGINX
