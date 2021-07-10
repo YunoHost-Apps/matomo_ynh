@@ -31,7 +31,7 @@ app=$YNH_APP_INSTANCE_NAME
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-ynh_script_progression --message="Validating installation parameters..."
+ynh_script_progression --message="Validating installation parameters..." --weight=1
 
 final_path=/var/www/$app
 test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
@@ -42,7 +42,7 @@ ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_script_progression --message="Storing installation settings..."
+ynh_script_progression --message="Storing installation settings..." --weight=1
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
@@ -50,7 +50,7 @@ ynh_app_setting_set --app=$app --key=path --value=$path_url
 #=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
-ynh_script_progression --message="Creating a MySQL database..."
+ynh_script_progression --message="Creating a MySQL database..." --weight=1
 
 db_name=$(ynh_sanitize_dbid --db_name=$app)
 db_user=$db_name
@@ -60,7 +60,7 @@ ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Configuring system user..."
+ynh_script_progression --message="Configuring system user..." --weight=1
 
 # Create a system user
 ynh_system_user_create --username=$app --home_dir="$final_path"
@@ -68,7 +68,7 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Setting up source files..."
+ynh_script_progression --message="Setting up source files..." --weight=4
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
@@ -82,7 +82,7 @@ chown -R $app:www-data "$final_path"
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring NGINX web server..."
+ynh_script_progression --message="Configuring NGINX web server..." --weight=2
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
@@ -90,7 +90,7 @@ ynh_add_nginx_config
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring PHP-FPM..."
+ynh_script_progression --message="Configuring PHP-FPM..." --weight=3
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
@@ -99,7 +99,7 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 # SETUP A CRON
 #=================================================
-ynh_script_progression --message="Setuping a cron..."
+ynh_script_progression --message="Setuping a cron..." --weight=1
 
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 chown root: "/etc/cron.d/$app"
@@ -108,7 +108,7 @@ chmod 644 "/etc/cron.d/$app"
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_script_progression --message="Configuring permissions..."
+ynh_script_progression --message="Configuring permissions..." --weight=1
 
 # Make app public if necessary or protect it
 if [ $is_public -eq 1 ]
@@ -119,14 +119,14 @@ fi
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading NGINX web server..."
+ynh_script_progression --message="Reloading NGINX web server..." --weight=1
 
 ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # SEND A README FOR THE ADMIN
 #=================================================
-ynh_script_progression --message="Sending a readme for the admin..."
+ynh_script_progression --message="Sending a readme for the admin..." --weight=1
 
 message="Matomo was successfully installed :)
 
@@ -147,4 +147,4 @@ ynh_send_readme_to_admin "$message"
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of Matomo completed"
+ynh_script_progression --message="Installation of Matomo completed" --last

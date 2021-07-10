@@ -96,7 +96,7 @@ fi
 #=================================================
 # SETUP A CRON
 #=================================================
-ynh_script_progression --message="Setuping a cron..."
+ynh_script_progression --message="Setuping a cron..." --weight=1
 
 path=$new_path
 domain=$new_domain
