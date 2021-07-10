@@ -8,9 +8,6 @@ YNH_PHP_VERSION="7.3"
 
 extra_php_dependencies="php${YNH_PHP_VERSION}-curl php${YNH_PHP_VERSION}-gd php${YNH_PHP_VERSION}-cli php${YNH_PHP_VERSION}-mysql php${YNH_PHP_VERSION}-xml php${YNH_PHP_VERSION}-mbstring"
 
-# Composer version
-YNH_COMPOSER_VERSION="2.0.13"
-
 #=================================================
 # PERSONAL HELPERS
 #=================================================

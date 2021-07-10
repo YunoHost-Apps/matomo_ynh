@@ -3,23 +3,25 @@
 [![Niveau d'intégration](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo) ![](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)  
 [![Installer Matomo avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=matomo)
 
-*[Read this readme in english.](./README.md)* 
+*[Read this readme in english.](./README.md)*
+*[Lire ce readme en français.](./README_fr.md)*
 
-> *Ce package vous permet d'installer Matomo rapidement et simplement sur un serveur YunoHost.  
-Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/install) pour apprendre comment l'installer.*
+> *Ce package vous permet d'installer Matomo rapidement et simplement sur un serveur YunoHost.
+Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
 
 ## Vue d'ensemble
-Matomo est une plateforme d'analyse open source de mesure de statistiques Web. Il s'agit d'un logiciel PHP MySQL complet que vous téléchargez et installez sur votre propre serveur Web. À la fin du processus d'installation de cinq minutes, vous recevrez un code JavaScript. Copiez et collez simplement cette balise sur les sites Web que vous souhaitez suivre et accédez à vos rapports d'analyse en temps réel.
 
-**Version incluse :** 4.3.1
+Plateforme d'analyse open source de mesure de statistiques Web
+
+**Version incluse :** 4.3.1~ynh2
+
+**Démo :** https://demo.matomo.org
 
 ## Captures d'écran
 
-![](https://img.matomo.org/spai/w_660+q_lossless+ret_img+to_webp/https://static.matomo.org/wp-content/uploads/2019/03/matomo-analytics-dashboard.png)
+![](./doc/screenshots/screenshot.png)
 
-## Démo
-
-* [Démo officielle](https://demo.matomo.org)
+## Avertissements / informations importantes
 
 ## Configuration
 
@@ -27,24 +29,14 @@ Matomo est une plateforme d'analyse open source de mesure de statistiques Web. I
 1. Les informations d'identification de la base de données MySQL seront envoyées à **l'email admin**. Remplissez ces détails lors du processus d'inscription.
 1. Le support LDAP n'est pas encore implémenté pour cette l'application.
 
-## Documentation
+## Documentations et ressources
 
- * Documentation officielle : https://matomo.org/docs
- * Documentation YunoHost : https://yunohost.org/fr/app_matomo
-
-#### Architectures supportées
-
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/matomo.svg)](https://ci-apps.yunohost.org/ci/apps/matomo/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/matomo.svg)](https://ci-apps-arm.yunohost.org/ci/apps/matomo/)
-
-## Liens
-
- * Signaler un bug : https://github.com/YunoHost-Apps/matomo_ynh/issues
- * Site de l'application : https://matomo.org/
- * Dépôt de l'application principale : https://github.com/matomo-org/matomo
- * Site web YunoHost : https://yunohost.org/
-
----
+* Site officiel de l'app : https://matomo.org
+* Documentation officielle utilisateur : https://yunohost.org/en/app_matomo
+* Documentation officielle de l'admin : https://matomo.org/docs
+* Dépôt de code officiel de l'app : https://github.com/matomo-org/matomo
+* Documentation YunoHost pour cette app : https://yunohost.org/app_matomo
+* Signaler un bug : https://github.com/YunoHost-Apps/matomo_ynh/issues
 
 ## Informations pour les développeurs
 
@@ -56,3 +48,5 @@ sudo yunohost app install https://github.com/YunoHost-Apps/matomo_ynh/tree/testi
 ou
 sudo yunohost app upgrade matomo -u https://github.com/YunoHost-Apps/matomo_ynh/tree/testing --debug
 ```
+
+**Plus d'infos sur le packaging d'applications :** https://yunohost.org/packaging_apps
