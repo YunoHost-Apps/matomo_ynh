@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Open source analytics platform for measuring Web statistics
 
-**Shipped version:** 4.3.1~ynh2
+**Shipped version:** 4.4.0~ynh1
 
 **Demo:** https://demo.matomo.org
 
