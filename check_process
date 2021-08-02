@@ -13,6 +13,8 @@
 		upgrade=1
 		#4.3.0 (#47) 
 		upgrade=1	from_commit=1d967a751135c3801ef95cf989ab3fb9e45e6f70
+		#4.4.0
+		upgrade=1	from_commit=9edf3d60ea391925f835ece1309bbcb54e6d33fe
 		backup_restore=1
 		multi_instance=1
 		change_url=1
@@ -21,5 +23,7 @@ Email=anmol@datamol.org
 Notification=yes
 ;;; Upgrade options
 	; commit=1d967a751135c3801ef95cf989ab3fb9e45e6f70
-		name= 4.3.0 (#47) 
+		name= 4.3.0
+	; commit=9edf3d60ea391925f835ece1309bbcb54e6d33fe
+		name= 4.4.0
 		manifest_arg=domain=DOMAIN&path=PATH&admin=USER&language=fr&is_public=1&password=pass&port=666&
