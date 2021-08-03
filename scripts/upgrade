@@ -110,13 +110,14 @@ then
 		# Remove the tmp directory securely
 		ynh_secure_remove --file="$tmpdir"
 
-		chmod 750 "$final_path"
-		chmod -R o-rwx "$final_path"
 		chown -R $app:www-data "$final_path"
-
 		ynh_exec_as $app php${phpversion} $final_path/console core:update -n
 	fi
 fi
+
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
 
 #=================================================
 # NGINX CONFIGURATION
