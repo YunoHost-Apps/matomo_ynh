@@ -36,7 +36,6 @@ Open source analytics platform for measuring Web statistics
 ## Documentation and resources
 
 * Official app website: https://matomo.org
-* Official user documentation: https://yunohost.org/en/app_matomo
 * Official admin documentation: https://matomo.org/docs
 * Upstream app code repository: https://github.com/matomo-org/matomo
 * YunoHost documentation for this app: https://yunohost.org/app_matomo
