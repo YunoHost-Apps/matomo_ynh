@@ -13,7 +13,6 @@
         "website": "https://matomo.org",
         "demo": "https://demo.matomo.org",
         "admindoc": "https://matomo.org/docs",
-        "userdoc": "https://yunohost.org/en/app_matomo",
         "code": "https://github.com/matomo-org/matomo"
     },
     "license": "GPL-3.0-or-later",
