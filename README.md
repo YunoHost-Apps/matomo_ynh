@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Open source analytics platform for measuring Web statistics
 
-**Shipped version:** 4.4.1~ynh3
+**Shipped version:** 4.5.0~ynh1
 
 **Demo:** https://demo.matomo.org
 
@@ -36,7 +36,6 @@ Open source analytics platform for measuring Web statistics
 ## Documentation and resources
 
 * Official app website: https://matomo.org
-* Official user documentation: https://yunohost.org/en/app_matomo
 * Official admin documentation: https://matomo.org/docs
 * Upstream app code repository: https://github.com/matomo-org/matomo
 * YunoHost documentation for this app: https://yunohost.org/app_matomo

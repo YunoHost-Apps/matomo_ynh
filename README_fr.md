@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Plateforme d'analyse open source de mesure de statistiques Web
 
-**Version incluse :** 4.4.1~ynh3
+**Version incluse :** 4.5.0~ynh1
 
 **Démo :** https://demo.matomo.org
 
@@ -32,7 +32,6 @@ Plateforme d'analyse open source de mesure de statistiques Web
 ## Documentations et ressources
 
 * Site officiel de l'app : https://matomo.org
-* Documentation officielle utilisateur : https://yunohost.org/en/app_matomo
 * Documentation officielle de l'admin : https://matomo.org/docs
 * Dépôt de code officiel de l'app : https://github.com/matomo-org/matomo
 * Documentation YunoHost pour cette app : https://yunohost.org/app_matomo
