@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Plateforme d'analyse open source de mesure de statistiques Web
 
-**Version incluse :** 4.7.1~ynh1
+**Version incluse :** 4.7.1~ynh2
 
 **Démo :** https://demo.matomo.org
 
