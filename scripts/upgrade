@@ -112,17 +112,8 @@ then
 		# This condition is only for CI test to go through the upgrade process
 		ynh_setup_source --dest_dir="$final_path"
 	else
-		# Create a temporary directory
-		tmpdir="$(mktemp -d)"
-
-		cp -a "$final_path/config/config.ini.php" "$tmpdir/config.ini.php"
-		# Remove the app directory securely
-		ynh_secure_remove --file=$final_path
 		# Download, check integrity, uncompress and patch the source from app.src
-		ynh_setup_source --dest_dir="$final_path"
-		cp -a "$tmpdir/config.ini.php" "$final_path/config/config.ini.php"
-		# Remove the tmp directory securely
-		ynh_secure_remove --file="$tmpdir"
+		ynh_setup_source --dest_dir="$final_path" --keep="$final_path/config/config.ini.php"
 
 		chown -R $app:www-data "$final_path"
 		ynh_exec_as $app php${phpversion} $final_path/console core:update -n
