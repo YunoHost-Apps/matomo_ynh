@@ -135,17 +135,15 @@ ynh_systemd_action --service_name=nginx --action=reload
 #=================================================
 ynh_script_progression --message="Sending a readme for the admin..." --weight=1
 
-
-echo "$Informations
-Matomo was successfully installed :)
+echo "Matomo was successfully installed :)
 
 Please open your $app domain: https://$domain$path_url
 
 Complete the registration process from the setup page displayed.
 Details for MySQL database to be enterted while registration process:
 
-Database login:    $app
-Database name:     $app
+Database login:    $db_user
+Database name:     $db_name
 Database password: $db_pwd
 
 If you are facing any problem or want to improve this app, please open a new issue here: https://github.com/YunoHost-Apps/matomo_ynh/issues" > mail_to_send
