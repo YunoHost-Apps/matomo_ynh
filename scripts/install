@@ -135,7 +135,9 @@ ynh_systemd_action --service_name=nginx --action=reload
 #=================================================
 ynh_script_progression --message="Sending a readme for the admin..." --weight=1
 
-message="Matomo was successfully installed :)
+
+echo "$Informations
+Matomo was successfully installed :)
 
 Please open your $app domain: https://$domain$path_url
 
@@ -146,9 +148,10 @@ Database login:    $app
 Database name:     $app
 Database password: $db_pwd
 
-If you are facing any problem or want to improve this app, please open a new issue here: https://github.com/YunoHost-Apps/matomo_ynh/issues"
+If you are facing any problem or want to improve this app, please open a new issue here: https://github.com/YunoHost-Apps/matomo_ynh/issues" > mail_to_send
 
-ynh_send_readme_to_admin "$message"
+ynh_send_readme_to_admin --app_message="mail_to_send" --recipients="$admin" --type=install
+
 
 #=================================================
 # END OF SCRIPT
