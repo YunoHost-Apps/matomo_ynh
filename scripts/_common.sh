@@ -20,8 +20,6 @@ pkg_dependencies="php${YNH_PHP_VERSION}-curl php${YNH_PHP_VERSION}-gd php${YNH_P
 # FUTURE OFFICIAL HELPERS
 #=================================================
 
-#!/bin/bash
-
 # Send an email to inform the administrator
 #
 # usage: ynh_send_readme_to_admin --app_message=app_message [--recipients=recipients] [--type=type]
