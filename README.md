@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # Matomo for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo) ![](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo) ![Working status](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)  
 [![Install Matomo with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=matomo)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -22,13 +22,13 @@ Matomo is a full-featured PHP MySQL software program that you download and insta
 Matomo aims to be a Free software alternative to Google Analytics and is already used on more than 1,400,000 websites. Privacy is built-in!
 
 
-**Shipped version:** 4.10.0~ynh1
+**Shipped version:** 4.10.1~ynh1
 
 **Demo:** https://demo.matomo.org
 
 ## Screenshots
 
-![](./doc/screenshots/screenshot.png)
+![Screenshot of Matomo](./doc/screenshots/screenshot.png)
 
 ## Disclaimers / important information
 
@@ -40,21 +40,22 @@ Matomo aims to be a Free software alternative to Google Analytics and is already
 
 ## Documentation and resources
 
-* Official app website: https://matomo.org
-* Official admin documentation: https://matomo.org/docs
-* Upstream app code repository: https://github.com/matomo-org/matomo
-* YunoHost documentation for this app: https://yunohost.org/app_matomo
-* Report a bug: https://github.com/YunoHost-Apps/matomo_ynh/issues
+* Official app website: <https://matomo.org>
+* Official admin documentation: <https://matomo.org/docs>
+* Upstream app code repository: <https://github.com/matomo-org/matomo>
+* YunoHost documentation for this app: <https://yunohost.org/app_matomo>
+* Report a bug: <https://github.com/YunoHost-Apps/matomo_ynh/issues>
 
 ## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/matomo_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
-```
+
+``` bash
 sudo yunohost app install https://github.com/YunoHost-Apps/matomo_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade matomo -u https://github.com/YunoHost-Apps/matomo_ynh/tree/testing --debug
 ```
 
-**More info regarding app packaging:** https://yunohost.org/packaging_apps
+**More info regarding app packaging:** <https://yunohost.org/packaging_apps>
