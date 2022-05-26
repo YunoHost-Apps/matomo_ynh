@@ -152,7 +152,6 @@ If you are facing any problem or want to improve this app, please open a new iss
 
 ynh_send_readme_to_admin --app_message="mail_to_send" --recipients="$admin" --type=install
 
-
 #=================================================
 # END OF SCRIPT
 #=================================================
