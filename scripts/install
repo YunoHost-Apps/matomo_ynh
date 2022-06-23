@@ -22,12 +22,12 @@ ynh_abort_if_errors
 
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
-admin=$YNH_APP_ARG_ADMIN
-email=$(ynh_user_get_info --username=$admin --key=mail)
 is_public=$YNH_APP_ARG_IS_PUBLIC
-phpversion=$YNH_PHP_VERSION
+admin=$YNH_APP_ARG_ADMIN
 
 app=$YNH_APP_INSTANCE_NAME
+
+email=$(ynh_user_get_info --username=$admin --key=mail)
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
@@ -56,6 +56,14 @@ ynh_script_progression --message="Installing dependencies..." --weight=1
 ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Configuring system user..." --weight=1
+
+# Create a system user
+ynh_system_user_create --username=$app --home_dir="$final_path"
+
+#=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
 ynh_script_progression --message="Creating a MySQL database..." --weight=1
@@ -66,14 +74,6 @@ ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Configuring system user..." --weight=1
-
-# Create a system user
-ynh_system_user_create --username=$app --home_dir="$final_path"
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=4
@@ -82,10 +82,17 @@ ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path"
 
-# Set permissions to app files
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
+
+#=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+ynh_script_progression --message="Configuring PHP-FPM..." --weight=3
+
+# Create a dedicated PHP-FPM config
+ynh_add_fpm_config --usage=low --footprint=low
 
 #=================================================
 # NGINX CONFIGURATION
@@ -96,13 +103,7 @@ ynh_script_progression --message="Configuring NGINX web server..." --weight=2
 ynh_add_nginx_config
 
 #=================================================
-# PHP-FPM CONFIGURATION
-#=================================================
-ynh_script_progression --message="Configuring PHP-FPM..." --weight=3
-
-# Create a dedicated PHP-FPM config
-ynh_add_fpm_config --usage=low --footprint=low
-
+# SPECIFIC SETUP
 #=================================================
 # SETUP A CRON
 #=================================================
@@ -117,9 +118,11 @@ chmod 644 "/etc/cron.d/$app"
 #=================================================
 ynh_script_progression --message="Configuring permissions..." --weight=1
 
-# Make app public if necessary or protect it
+# Make app public if necessary
 if [ $is_public -eq 1 ]
 then
+	# Everyone can access the app.
+	# The "main" permission is automatically created before the install script.
 	ynh_permission_update --permission="main" --add="visitors"
 fi
 
@@ -142,8 +145,8 @@ Please open your $app domain: https://$domain$path_url
 Complete the registration process from the setup page displayed.
 Details for MySQL database to be enterted while registration process:
 
-Database login:    $app
-Database name:     $app
+Database login:    $db_user
+Database name:     $db_name
 Database password: $db_pwd
 
 If you are facing any problem or want to improve this app, please open a new issue here: https://github.com/YunoHost-Apps/matomo_ynh/issues"

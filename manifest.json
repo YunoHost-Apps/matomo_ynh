@@ -6,7 +6,7 @@
         "en": "Open source analytics platform for measuring Web statistics",
         "fr": "Plateforme d'analyse open source de mesure de statistiques Web"
     },
-    "version": "4.10.1~ynh1",
+    "version": "4.10.1~ynh2",
     "url": "https://matomo.org",
     "upstream": {
         "license": "GPL-3.0-or-later",
@@ -26,11 +26,11 @@
     "multi_instance": true,
     "services": [
         "nginx",
-        "php8.0-fpm",
+        "php7.3-fpm",
         "mysql"
     ],
     "arguments": {
-        "install" : [
+        "install": [
             {
                 "name": "domain",
                 "type": "domain"
@@ -42,10 +42,6 @@
                 "default": "/matomo"
             },
             {
-                "name": "admin",
-                "type": "user"
-            },
-            {
                 "name": "is_public",
                 "type": "boolean",
                 "help": {
@@ -53,6 +49,10 @@
                     "fr": "Si cette case est cochée, Matomo sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
                 },
                 "default": true
+            },
+            {
+                "name": "admin",
+                "type": "user"
             }
         ]
     }

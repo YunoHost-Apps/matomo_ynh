@@ -28,11 +28,13 @@ ynh_script_progression --message="Loading installation settings..." --weight=1
 
 # Needed for helper "ynh_add_nginx_config"
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+
+# Add settings here as needed by your application
+admin=$(ynh_app_setting_get --app=$app --key=admin)
 email=$(ynh_user_get_info --username=$admin --key=mail)
 
 #=================================================
-# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
+# BACKUP BEFORE CHANGE URL THEN ACTIVE TRAP
 #=================================================
 ynh_script_progression --message="Backing up the app before changing its URL (may take a while)..." --weight=1
 
@@ -100,6 +102,7 @@ ynh_script_progression --message="Setuping a cron..." --weight=1
 
 path=$new_path
 domain=$new_domain
+
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 chown root: "/etc/cron.d/$app"
 chmod 644 "/etc/cron.d/$app"
