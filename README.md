@@ -24,6 +24,7 @@ Matomo aims to be a Free software alternative to Google Analytics and is already
 
 **Shipped version:** 4.11.0~ynh2
 
+
 **Demo:** https://demo.matomo.org
 
 ## Screenshots
