@@ -22,7 +22,7 @@ Matomo is a full-featured PHP MySQL software program that you download and insta
 Matomo aims to be a Free software alternative to Google Analytics and is already used on more than 1,400,000 websites. Privacy is built-in!
 
 
-**Shipped version:** 4.11.0~ynh2
+**Shipped version:** 4.11.0~ynh3
 
 
 **Demo:** https://demo.matomo.org
