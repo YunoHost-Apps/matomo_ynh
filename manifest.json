@@ -13,7 +13,8 @@
         "website": "https://matomo.org",
         "demo": "https://demo.matomo.org",
         "admindoc": "https://matomo.org/docs",
-        "code": "https://github.com/matomo-org/matomo"
+        "code": "https://github.com/matomo-org/matomo",
+        "cpe": "cpe:2.3:a:matomo:matomo"
     },
     "license": "GPL-3.0-or-later",
     "maintainer": {
