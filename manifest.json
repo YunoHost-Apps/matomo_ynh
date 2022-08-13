@@ -6,7 +6,7 @@
         "en": "Open source analytics platform for measuring Web statistics",
         "fr": "Plateforme d'analyse open source de mesure de statistiques Web"
     },
-    "version": "4.11.0~ynh2",
+    "version": "4.11.0~ynh3",
     "url": "https://matomo.org",
     "upstream": {
         "license": "GPL-3.0-or-later",
