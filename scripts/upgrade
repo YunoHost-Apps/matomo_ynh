@@ -111,7 +111,7 @@ then
 		ynh_setup_source --dest_dir="$final_path"
 	else
 		# Download, check integrity, uncompress and patch the source from app.src
-		ynh_setup_source --dest_dir="$final_path" --keep="$final_path/config/config.ini.php"
+		ynh_setup_source --dest_dir="$final_path" --keep="config/config.ini.php"
 
 		chown -R $app:www-data "$final_path"
 		ynh_exec_as $app php${phpversion} $final_path/console core:update -n
