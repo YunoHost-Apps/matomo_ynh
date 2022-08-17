@@ -6,14 +6,15 @@
         "en": "Open source analytics platform for measuring Web statistics",
         "fr": "Plateforme d'analyse open source de mesure de statistiques Web"
     },
-    "version": "4.11.0~ynh2",
+    "version": "4.11.0~ynh3",
     "url": "https://matomo.org",
     "upstream": {
         "license": "GPL-3.0-or-later",
         "website": "https://matomo.org",
         "demo": "https://demo.matomo.org",
         "admindoc": "https://matomo.org/docs",
-        "code": "https://github.com/matomo-org/matomo"
+        "code": "https://github.com/matomo-org/matomo",
+        "cpe": "cpe:2.3:a:matomo:matomo"
     },
     "license": "GPL-3.0-or-later",
     "maintainer": {
@@ -21,12 +22,12 @@
         "email": "anmol@datamol.org"
     },
     "requirements": {
-        "yunohost": ">= 4.3.0"
+        "yunohost": ">= 11.0.9"
     },
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.3-fpm",
+        "php8.0-fpm",
         "mysql"
     ],
     "arguments": {

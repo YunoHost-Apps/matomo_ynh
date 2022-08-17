@@ -23,6 +23,7 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 fpm_footprint=$(ynh_app_setting_get --app=$app --key=fpm_footprint)
 fpm_usage=$(ynh_app_setting_get --app=$app --key=fpm_usage)
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 email=$(ynh_user_get_info --username=$admin --key=mail)
 
@@ -111,7 +112,7 @@ then
 		ynh_setup_source --dest_dir="$final_path"
 	else
 		# Download, check integrity, uncompress and patch the source from app.src
-		ynh_setup_source --dest_dir="$final_path" --keep="$final_path/config/config.ini.php"
+		ynh_setup_source --dest_dir="$final_path" --keep="config/config.ini.php"
 
 		chown -R $app:www-data "$final_path"
 		ynh_exec_as $app php${phpversion} $final_path/console core:update -n
