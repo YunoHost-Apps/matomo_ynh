@@ -58,3 +58,7 @@ ram.runtime = "50M" # FIXME: replace with an **estimate** minimum ram requiremen
 
     [resources.database]
     type = "mysql"
+
+    [resources.apt]
+    packages = "php$YNH_PHP_VERSION-curl php$YNH_PHP_VERSION-gd php$YNH_PHP_VERSION-cli php$YNH_PHP_VERSION-mysql php$YNH_PHP_VERSION-xml php$YNH_PHP_VERSION-mbstring"
+
