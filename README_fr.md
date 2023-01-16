@@ -5,15 +5,15 @@ It shall NOT be edited by hand.
 
 # Matomo pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)  
 [![Installer Matomo avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=matomo)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Matomo rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Matomo rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Matomo is the leading Free/Libre open analytics platform.
 
@@ -26,9 +26,9 @@ Matomo aims to be a Free software alternative to Google Analytics and is already
 
 **Démo :** https://demo.matomo.org
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de Matomo](./doc/screenshots/screenshot.png)
+![Capture d’écran de Matomo](./doc/screenshots/screenshot.png)
 
 ## Avertissements / informations importantes
 
@@ -40,9 +40,9 @@ Matomo aims to be a Free software alternative to Google Analytics and is already
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://matomo.org>
-* Documentation officielle de l'admin : <https://matomo.org/docs>
-* Dépôt de code officiel de l'app : <https://github.com/matomo-org/matomo>
+* Site officiel de l’app : <https://matomo.org>
+* Documentation officielle de l’admin : <https://matomo.org/docs>
+* Dépôt de code officiel de l’app : <https://github.com/matomo-org/matomo>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_matomo>
 * Signaler un bug : <https://github.com/YunoHost-Apps/matomo_ynh/issues>
 
@@ -58,4 +58,4 @@ ou
 sudo yunohost app upgrade matomo -u https://github.com/YunoHost-Apps/matomo_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
