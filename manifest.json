@@ -3,10 +3,10 @@
     "id": "matomo",
     "packaging_format": 1,
     "description": {
-        "en": "Open source analytics platform for measuring Web statistics",
-        "fr": "Plateforme d'analyse open source de mesure de statistiques Web"
+        "en": "Analytics platform for measuring Web statistics",
+        "fr": "Plateforme d'analyse de mesure de statistiques Web"
     },
-    "version": "4.12.3~ynh1",
+    "version": "4.13.1~ynh1",
     "url": "https://matomo.org",
     "upstream": {
         "license": "GPL-3.0-or-later",
