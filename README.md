@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # Matomo for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo) ![Working status](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo) ![Working status](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)
 [![Install Matomo with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=matomo)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -22,7 +22,7 @@ Matomo is a full-featured PHP MySQL software program that you download and insta
 Matomo aims to be a Free software alternative to Google Analytics and is already used on more than 1,400,000 websites. Privacy is built-in!
 
 
-**Shipped version:** 4.13.1~ynh1
+**Shipped version:** 4.13.2~ynh1
 
 **Demo:** https://demo.matomo.org
 
