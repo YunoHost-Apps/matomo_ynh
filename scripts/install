@@ -7,6 +7,7 @@
 #=================================================
 
 source _common.sh
+source ynh_send_readme_to_admin__2
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -145,20 +146,7 @@ ynh_systemd_action --service_name=nginx --action=reload
 #=================================================
 ynh_script_progression --message="Sending a readme for the admin..." --weight=1
 
-message="Matomo was successfully installed
-
-Please open your $app domain: https://$domain$path_url
-
-Complete the registration process from the setup page displayed.
-Details for MySQL database to be enterted while registration process:
-
-Database login:    $db_user
-Database name:     $db_name
-Database password: $db_pwd
-
-If you are facing any problem or want to improve this app, please open a new issue here: https://github.com/YunoHost-Apps/matomo_ynh/issues"
-
-ynh_send_readme_to_admin "$message"
+ynh_send_readme_to_admin --app_message="../conf/msg_install" --recipients=$admin_mail --type='install'
 
 #=================================================
 # END OF SCRIPT

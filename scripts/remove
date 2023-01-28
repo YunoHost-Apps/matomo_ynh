@@ -7,6 +7,7 @@
 #=================================================
 
 source _common.sh
+source ynh_send_readme_to_admin__2
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -82,6 +83,13 @@ ynh_script_progression --message="Removing the dedicated system user..." --weigh
 
 # Delete a system user
 ynh_system_user_delete --username=$app
+
+#=================================================
+# SEND A README FOR THE ADMIN
+#=================================================
+ynh_script_progression --message="Sending a readme for the admin..."
+
+ynh_send_readme_to_admin --app_message="../conf/msg_remove" --recipients=$admin_mail --type='remove'
 
 #=================================================
 # END OF SCRIPT
