@@ -21,6 +21,7 @@ domain=$(ynh_app_setting_get --app=$app --key=domain)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+email=$(ynh_user_get_info --username=$admin --key="mail")
 
 #=================================================
 # STANDARD REMOVE
@@ -89,7 +90,7 @@ ynh_system_user_delete --username=$app
 #=================================================
 ynh_script_progression --message="Sending a readme for the admin..."
 
-ynh_send_readme_to_admin --app_message="../conf/msg_remove" --recipients=$admin_mail --type='remove'
+ynh_send_readme_to_admin --app_message="../conf/msg_remove" --recipients=$email --type='remove'
 
 #=================================================
 # END OF SCRIPT
