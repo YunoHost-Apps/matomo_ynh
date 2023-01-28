@@ -1,0 +1,12 @@
+__APP__ was successfully installed :)
+
+Please open your __APP__ domain: https://__DOMAIN____PATH_URL__
+
+Complete the registration process from the setup page displayed.
+Details for MySQL database to be enterted while registration process:
+
+Database login:    db_user
+Database name:     db_name
+Database password: db_pwd
+
+If you are facing any problem or want to improve this app, please open a new issue here: https://github.com/YunoHost-Apps/matomo_ynh/issues"
