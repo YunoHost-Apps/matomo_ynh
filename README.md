@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # Matomo for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo) ![Working status](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo) ![Working status](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)
+
 [![Install Matomo with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=matomo)
 
 *[Lire ce readme en français.](./README_fr.md)*
