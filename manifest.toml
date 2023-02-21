@@ -28,11 +28,9 @@ ram.runtime = "50M"
 
 [install]
     [install.domain]
-    # this is a generic question - ask strings are automatically handled by Yunohost's core
     type = "domain"
 
     [install.path]
-    # this is a generic question - ask strings are automatically handled by Yunohost's core
     type = "path"
     default = "/matomo"
 
@@ -43,7 +41,6 @@ ram.runtime = "50M"
     default = "visitors"
 
     [install.admin]
-    # this is a generic question - ask strings are automatically handled by Yunohost's core
     type = "user"
 
 [resources]
