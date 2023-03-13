@@ -5,7 +5,7 @@ name = "Matomo"
 description.en = "Open source analytics platform for measuring Web statistics"
 description.fr = "Plateforme d'analyse open source de mesure de statistiques Web"
 
-version = "4.12.3~ynh1"
+version = "4.13.3~ynh1"
 
 maintainers = ["Anmol Sharma"]
 
@@ -48,8 +48,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://builds.matomo.org/matomo-4.12.3.tar.gz"
-        sha256 = "00efe4335c9cee9f269b5e8a337026af7f115c05cde1e9ae47485592372b37ee"
+        url = "https://builds.matomo.org/matomo-4.13.3.tar.gz"
+        sha256 = "d7bcb4c45cba69afd9c849bd554bc88b8fc6971769c1f5aff997623bac05e0ac"
 
     [resources.system_user]
 
