@@ -2,6 +2,6 @@ Une fois l'installation terminée, l'application devra terminer le processus d'e
 
 Details for MySQL database to be enterted while registration process:
 
-Database login:    __DB_USER
+Database login:    __DB_USER__
 Database name:     __DB_NAME__
 Database password: __DB_PWD__
