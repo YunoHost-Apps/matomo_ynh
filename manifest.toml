@@ -17,11 +17,11 @@ admindoc = "https://matomo.org/docs"
 code = "https://github.com/matomo-org/matomo"
 
 [integration]
-yunohost = ">= 11.1.10"
+yunohost = ">= 11.1.15"
 architectures = "all"
 multi_instance = true
-ldap = "?"
-sso = "?"
+ldap = false
+sso = false
 disk = "50M"
 ram.build = "50M"
 ram.runtime = "50M"
@@ -44,6 +44,13 @@ ram.runtime = "50M"
     type = "user"
 
 [resources]
+
+    [resources.sources]
+
+        [resources.sources.main]
+        url = "https://builds.matomo.org/matomo-4.12.3.tar.gz"
+        sha256 = "00efe4335c9cee9f269b5e8a337026af7f115c05cde1e9ae47485592372b37ee"
+
     [resources.system_user]
 
     [resources.install_dir]

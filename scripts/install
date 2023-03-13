@@ -54,33 +54,6 @@ chown root: "/etc/cron.d/$app"
 chmod 644 "/etc/cron.d/$app"
 
 #=================================================
-# RELOAD NGINX
-#=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=1
-
-ynh_systemd_action --service_name=nginx --action=reload
-
-#=================================================
-# SEND A README FOR THE ADMIN
-#=================================================
-ynh_script_progression --message="Sending a readme for the admin..." --weight=1
-
-message="Matomo was successfully installed
-
-Please open your $app domain: https://$domain$path
-
-Complete the registration process from the setup page displayed.
-Details for MySQL database to be enterted while registration process:
-
-Database login:    $db_user
-Database name:     $db_name
-Database password: $db_pwd
-
-If you are facing any problem or want to improve this app, please open a new issue here: https://github.com/YunoHost-Apps/matomo_ynh/issues"
-
-ynh_send_readme_to_admin "$message"
-
-#=================================================
 # END OF SCRIPT
 #=================================================
 
