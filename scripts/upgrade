@@ -15,8 +15,6 @@ source /usr/share/yunohost/helpers
 
 upgrade_type=$(ynh_check_app_version_changed)
 
-email=$(ynh_user_get_info --username=$admin --key=mail)
-
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
