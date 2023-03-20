@@ -1,2 +1,1 @@
-MAILTO="__EMAIL__"
-5 * * * * __APP__ /usr/bin/php__PHPVERSION__ __FINALPATH__/console core:archive --url=https://__DOMAIN____PATH__ > /dev/null
+5 * * * * __APP__ /usr/bin/php__PHPVERSION__ __INSTALL_DIR__/console core:archive --url=https://__DOMAIN____PATH__ > /dev/null

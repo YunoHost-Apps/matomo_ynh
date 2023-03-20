@@ -6,6 +6,7 @@ It shall NOT be edited by hand.
 # Matomo pour YunoHost
 
 [![Niveau d’intégration](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)
+
 [![Installer Matomo avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=matomo)
 
 *[Read this readme in english.](./README.md)*
@@ -15,28 +16,18 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-Matomo is the leading Free/Libre open analytics platform.
-
-Matomo is a full-featured PHP MySQL software program that you download and install on your own webserver. At the end of the five-minute installation process, you will be given a JavaScript code. Simply copy and paste this tag on websites you wish to track and access your analytics reports in real-time.
+Matomo is the leading Free/Libre open analytics platform. At the end of the five-minute installation process, you will be given a JavaScript code. Simply copy and paste this tag on websites you wish to track and access your analytics reports in real-time.
 
 Matomo aims to be a Free software alternative to Google Analytics and is already used on more than 1,400,000 websites. Privacy is built-in!
 
 
-**Version incluse :** 4.13.3~ynh1
+**Version incluse :** 4.14.0~ynh1
 
 **Démo :** https://demo.matomo.org
 
 ## Captures d’écran
 
 ![Capture d’écran de Matomo](./doc/screenshots/screenshot.png)
-
-## Avertissements / informations importantes
-
-## Configuration
-
-1. Une fois l'installation terminée, l'application devra terminer le processus d'enregistrement en **visitant le domaine** sur lequel Matomo est installé.
-1. Les informations d'identification de la base de données MySQL seront envoyées à **l'email admin**. Remplissez ces détails lors du processus d'inscription.
-1. Le support LDAP n'est pas encore implémenté pour cette l'application.
 
 ## Documentations et ressources
 
