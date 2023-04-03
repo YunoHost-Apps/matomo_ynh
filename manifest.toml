@@ -17,7 +17,7 @@ admindoc = "https://matomo.org/docs"
 code = "https://github.com/matomo-org/matomo"
 
 [integration]
-yunohost = ">= 11.1.15"
+yunohost = ">= 11.1.16"
 architectures = "all"
 multi_instance = true
 ldap = false
