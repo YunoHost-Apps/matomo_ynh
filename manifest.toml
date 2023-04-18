@@ -5,7 +5,7 @@ name = "Matomo"
 description.en = "Open source analytics platform for measuring Web statistics"
 description.fr = "Plateforme d'analyse open source de mesure de statistiques Web"
 
-version = "4.14.0~ynh1"
+version = "4.14.2~ynh1"
 
 maintainers = ["Anmol Sharma"]
 
@@ -17,7 +17,7 @@ admindoc = "https://matomo.org/docs"
 code = "https://github.com/matomo-org/matomo"
 
 [integration]
-yunohost = ">= 11.1.15"
+yunohost = ">= 11.1.17"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -48,8 +48,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://builds.matomo.org/matomo-4.14.0.tar.gz"
-        sha256 = "76400edaa4d281b63faa1d6e15497438c5e66011d5807bd98bcf4bc4589cdc1d"
+        url = "https://builds.matomo.org/matomo-4.14.2.tar.gz"
+        sha256 = "8cfb3fe1b82ded5a9e4a878b9f01ebf85238dba84087088ff117224033700a9a"
 
     [resources.system_user]
 
