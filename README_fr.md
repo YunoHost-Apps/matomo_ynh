@@ -16,12 +16,11 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-Matomo is the leading Free/Libre open analytics platform. At the end of the five-minute installation process, you will be given a JavaScript code. Simply copy and paste this tag on websites you wish to track and access your analytics reports in real-time.
+Matomo est la principale plateforme d'analyse ouverte Free/Libre. À la fin du processus d'installation de cinq minutes, vous recevrez un code JavaScript. Copiez et collez simplement cette balise sur les sites Web que vous souhaitez suivre et accédez à vos rapports d'analyse en temps réel.
 
-Matomo aims to be a Free software alternative to Google Analytics and is already used on more than 1,400,000 websites. Privacy is built-in!
+Matomo se veut une alternative logicielle gratuite à Google Analytics et est déjà utilisé sur plus de 1 400 000 sites Web. La confidentialité est intégrée !
 
-
-**Version incluse :** 4.15.0~ynh1
+**Version incluse :** 4.15.1~ynh1
 
 **Démo :** https://demo.matomo.org
 
