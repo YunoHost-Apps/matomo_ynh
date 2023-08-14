@@ -2,10 +2,10 @@ packaging_format = 2
 
 id = "matomo"
 name = "Matomo"
-description.en = "Open source analytics platform for measuring Web statistics"
-description.fr = "Plateforme d'analyse open source de mesure de statistiques Web"
+description.en = "Analytics platform for measuring Web statistics"
+description.fr = "Plateforme d'analyse de mesure de statistiques Web"
 
-version = "4.15.1~ynh1"
+version = "4.15.1~ynh2"
 
 maintainers = []
 
@@ -35,8 +35,8 @@ ram.runtime = "50M"
     default = "/matomo"
 
     [install.init_main_permission]
-    help.en = "If enabled, Matomo will be accessible by people who do not have an account. This can be changed later via the webadmin."
-    help.fr = "Si cette case est cochée, Matomo sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
+    help.en = "If visitors enabled, Matomo will be accessible by people who do not have an account. This can be changed later via the webadmin."
+    help.fr = "Si visiteurs est cochée, Matomo sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
     type = "group"
     default = "visitors"
 
