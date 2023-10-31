@@ -33,7 +33,7 @@ Matomo se veut une alternative logicielle gratuite à Google Analytics et est d�
 * Site officiel de l’app : <https://matomo.org>
 * Documentation officielle de l’admin : <https://matomo.org/docs>
 * Dépôt de code officiel de l’app : <https://github.com/matomo-org/matomo>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_matomo>
+* YunoHost Store: <https://apps.yunohost.org/app/matomo>
 * Signaler un bug : <https://github.com/YunoHost-Apps/matomo_ynh/issues>
 
 ## Informations pour les développeurs
