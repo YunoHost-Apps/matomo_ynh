@@ -50,7 +50,7 @@ ynh_add_fpm_config
 # Create a dedicated NGINX config
 ynh_add_nginx_config
 
-ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
+ynh_add_config --template="cron" --destination="/etc/cron.d/$app"
 chown root: "/etc/cron.d/$app"
 chmod 644 "/etc/cron.d/$app"
 
