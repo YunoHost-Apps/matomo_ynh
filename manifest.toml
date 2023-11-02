@@ -7,7 +7,7 @@ description.fr = "Plateforme d'analyse de mesure de statistiques Web"
 
 version = "5.0.0~ynh1"
 
-maintainers = []
+maintainers = ["eric_G"]
 
 [upstream]
 license = "GPL-3.0-or-later"
