@@ -17,6 +17,7 @@ ynh_script_progression --message="Restoring the app main directory..." --weight=
 
 ynh_restore_file --origin_path="$install_dir"
 
+chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
 #=================================================
@@ -31,7 +32,6 @@ ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ./
 #=================================================
 ynh_script_progression --message="Restoring the PHP-FPM configuration..." --weight=2
 
-# Restore the file first, so it can have a backup if different
 ynh_restore_file --origin_path="/etc/php/$phpversion/fpm/pool.d/$app.conf"
 
 ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
