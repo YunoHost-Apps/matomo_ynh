@@ -23,6 +23,9 @@ ynh_change_url_nginx_config
 #=================================================
 ynh_script_progression --message="Setuping a cron..." --weight=1
 
+path=$new_path
+domain=$new_domain
+
 ynh_add_config --template="cron" --destination="/etc/cron.d/$app"
 chown root: "/etc/cron.d/$app"
 chmod 644 "/etc/cron.d/$app"
