@@ -30,7 +30,7 @@ then
 		ynh_setup_source --dest_dir="$install_dir"
 	else
 		# Download, check integrity, uncompress and patch the source from app.src
-		ynh_setup_source --dest_dir="$install_dir" --keep="config/config.ini.php"
+		ynh_setup_source --dest_dir="$install_dir" --keep="config/config.ini.php" --full_replace=1
 
 		chown -R $app:www-data "$install_dir"
 		ynh_exec_as $app php${phpversion} $install_dir/console core:update -n
