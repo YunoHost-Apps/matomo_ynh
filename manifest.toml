@@ -51,8 +51,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/matomo-org/matomo/archive/refs/tags/5.0.2.tar.gz"
-        sha256 = "5cc8bf3f2917363c465409794fa4b2c6ab203b81bac64f51199d70ac578879e5"
+        url = "https://github.com/matomo-org/matomo/releases/download/5.0.2/matomo-5.0.2.tar.gz"
+        sha256 = "acb0128492edcdddc707525ef8ffa2f0629675e925c82dac4e798f474ecc77ef"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
