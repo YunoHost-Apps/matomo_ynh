@@ -27,7 +27,7 @@ then
 		# config.ini.php is only created during the post-install process...
 		# it is therefore not present when the CI tests are carried out...
 		# This condition is only for CI test to go through the upgrade process
-		ynh_setup_source --dest_dir="$install_dir"
+		ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 	else
 		# Download, check integrity, uncompress and patch the source from app.src
 		ynh_setup_source --dest_dir="$install_dir" --keep="config/config.ini.php" --full_replace=1
