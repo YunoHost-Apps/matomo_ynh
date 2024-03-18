@@ -5,7 +5,7 @@ name = "Matomo"
 description.en = "Analytics platform for measuring Web statistics"
 description.fr = "Plateforme d'analyse de mesure de statistiques Web"
 
-version = "5.0.2~ynh1"
+version = "5.0.3~ynh1"
 
 maintainers = []
 
@@ -51,9 +51,10 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/matomo-org/matomo/releases/download/5.0.2/matomo-5.0.2.tar.gz"
-        sha256 = "acb0128492edcdddc707525ef8ffa2f0629675e925c82dac4e798f474ecc77ef"
+        url = "https://github.com/matomo-org/matomo/releases/download/5.0.3/matomo-5.0.3.tar.gz"
+        sha256 = "cd656ee7df4b29ac453456c6b9708d8264093ac2c99d6669d2830f31624cd626"
         autoupdate.strategy = "latest_github_release"
+        autoupdate.asset = "^matomo-.*tar.gz$"
 
     [resources.system_user]
 
