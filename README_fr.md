@@ -9,10 +9,10 @@ It shall NOT be edited by hand.
 
 [![Installer Matomo avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=matomo)
 
-*[Read this readme in english.](./README.md)*
+*[Lire le README dans d'autres langues.](./ALL_README.md)*
 
-> *Ce package vous permet d’installer Matomo rapidement et simplement sur un serveur YunoHost.
-Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
+> *Ce package vous permet d’installer Matomo rapidement et simplement sur un serveur YunoHost.*  
+> *Si vous n’avez pas YunoHost, consultez [ce guide](https://yunohost.org/install) pour savoir comment l’installer et en profiter.*
 
 ## Vue d’ensemble
 
@@ -37,9 +37,9 @@ Matomo se veut une alternative logicielle gratuite à Google Analytics et est d�
 
 ## Informations pour les développeurs
 
-Merci de faire vos pull request sur la [branche testing](https://github.com/YunoHost-Apps/matomo_ynh/tree/testing).
+Merci de faire vos pull request sur la [branche `testing`](https://github.com/YunoHost-Apps/matomo_ynh/tree/testing).
 
-Pour essayer la branche testing, procédez comme suit.
+Pour essayer la branche `testing`, procédez comme suit :
 
 ```bash
 sudo yunohost app install https://github.com/YunoHost-Apps/matomo_ynh/tree/testing --debug
