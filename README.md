@@ -9,7 +9,7 @@ It shall NOT be edited by hand.
 
 [![Install Matomo with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=matomo)
 
-*[Read this README is other languages.](./ALL_README.md)*
+*[Read this README in other languages.](./ALL_README.md)*
 
 > *This package allows you to install Matomo quickly and simply on a YunoHost server.*  
 > *If you don't have YunoHost, please consult [the guide](https://yunohost.org/install) to learn how to install it.*
@@ -21,7 +21,7 @@ Matomo is the leading Free/Libre open analytics platform. At the end of the five
 Matomo aims to be a Free software alternative to Google Analytics and is already used on more than 1,400,000 websites. Privacy is built-in!
 
 
-**Shipped version:** 5.0.2~ynh1
+**Shipped version:** 5.0.3~ynh1
 
 **Demo:** <https://demo.matomo.org>
 
