@@ -19,6 +19,16 @@ ynh_script_progression --message="Updating NGINX web server configuration..." --
 ynh_change_url_nginx_config
 
 #=================================================
+# SPECIFIC MODIFICATIONS
+#=================================================
+# RECONFIGURING MATOMO
+#=================================================
+ynh_script_progression --message="Reconfiguring Matomo..." --weight=2
+
+# See https://matomo.org/faq/how-to-install/faq_18/
+ynh_replace_string --match_string="trusted_hosts[] = \"$old_domain\"" --replace_string="trusted_hosts[] = \"$new_domain\"" --target_file="$install_dir/config/config.ini.php"
+
+#=================================================
 # SETUP A CRON
 #=================================================
 ynh_script_progression --message="Setuping a cron..." --weight=1
