@@ -25,15 +25,14 @@ ynh_change_url_nginx_config
 #=================================================
 ynh_script_progression --message="Reconfiguring Matomo..." --weight=2
 
-if [[ ! -f "$install_dir/config/config.ini.php" ]]; then
+if [[ -f "$install_dir/config/config.ini.php" ]]; then
 		# config.ini.php is only created during the post-install process...
 		# it is therefore not present when the CI tests are carried out...
 		# This condition is only for CI test to go through the upgrade process
-		ynh_setup_source --dest_dir="$install_dir"
+		
+		# See https://matomo.org/faq/how-to-install/faq_18/
+		ynh_replace_string --match_string="$old_domain" --replace_string="$new_domain" --target_file="$install_dir/config/config.ini.php"
 fi
-
-# See https://matomo.org/faq/how-to-install/faq_18/
-ynh_replace_string --match_string="$old_domain" --replace_string="$new_domain" --target_file="$install_dir/config/config.ini.php"
 
 #=================================================
 # SETUP A CRON
