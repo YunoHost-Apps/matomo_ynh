@@ -5,7 +5,7 @@ name = "Matomo"
 description.en = "Analytics platform for measuring Web statistics"
 description.fr = "Plateforme d'analyse de mesure de statistiques Web"
 
-version = "5.0.3~ynh2"
+version = "5.0.3~ynh3"
 
 maintainers = []
 
