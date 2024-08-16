@@ -5,7 +5,7 @@ No se debe editar a mano.
 
 # Matomo para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/matomo.svg)](https://dash.yunohost.org/appci/app/matomo) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/matomo.svg)](https://ci-apps.yunohost.org/ci/apps/matomo/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/matomo.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/matomo.maintain.svg)
 
 [![Instalar Matomo con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=matomo)
 
@@ -21,7 +21,7 @@ Matomo is the leading Free/Libre open analytics platform. At the end of the five
 Matomo aims to be a Free software alternative to Google Analytics and is already used on more than 1,400,000 websites. Privacy is built-in!
 
 
-**Versión actual:** 5.1.0~ynh1
+**Versión actual:** 5.1.1~ynh1
 
 **Demo:** <https://demo.matomo.org>
 
