@@ -1,1 +1,1 @@
-5 * * * * __APP__ /usr/bin/php__PHPVERSION__ __INSTALL_DIR__/console core:archive --url=https://__DOMAIN____PATH__ > /dev/null
+5 * * * * __APP__ /usr/bin/php__PHP_VERSION__ __INSTALL_DIR__/console core:archive --url=https://__DOMAIN____PATH__ > /dev/null
