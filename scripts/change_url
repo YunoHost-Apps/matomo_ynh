@@ -20,12 +20,12 @@ ynh_config_change_url_nginx
 ynh_script_progression "Reconfiguring Matomo..."
 
 if [[ -f "$install_dir/config/config.ini.php" ]]; then
-		# config.ini.php is only created during the post-install process...
-		# it is therefore not present when the CI tests are carried out...
-		# This condition is only for CI test to go through the upgrade process
+	# config.ini.php is only created during the post-install process...
+	# it is therefore not present when the CI tests are carried out...
+	# This condition is only for CI test to go through the upgrade process
 
-		# See https://matomo.org/faq/how-to-install/faq_18/
-		ynh_replace --match="$old_domain" --replace="$new_domain" --file="$install_dir/config/config.ini.php"
+	# See https://matomo.org/faq/how-to-install/faq_18/
+	ynh_replace --match="$old_domain" --replace="$new_domain" --file="$install_dir/config/config.ini.php"
 fi
 
 #=================================================
@@ -37,8 +37,6 @@ path=$new_path
 domain=$new_domain
 
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown root: "/etc/cron.d/$app"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 644 "/etc/cron.d/$app"
 
 #=================================================
 # END OF SCRIPT
