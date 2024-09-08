@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC STARTING
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -14,40 +8,38 @@ email=$(ynh_user_get_info --username=$admin --key=mail)
 #=================================================
 # MODIFY URL IN NGINX CONF
 #=================================================
-ynh_script_progression --message="Updating NGINX web server configuration..." --weight=3
+ynh_script_progression "Updating NGINX web server configuration..."
 
-ynh_change_url_nginx_config
+ynh_config_change_url_nginx
 
 #=================================================
 # SPECIFIC MODIFICATIONS
 #=================================================
 # RECONFIGURING MATOMO
 #=================================================
-ynh_script_progression --message="Reconfiguring Matomo..." --weight=2
+ynh_script_progression "Reconfiguring Matomo..."
 
 if [[ -f "$install_dir/config/config.ini.php" ]]; then
-		# config.ini.php is only created during the post-install process...
-		# it is therefore not present when the CI tests are carried out...
-		# This condition is only for CI test to go through the upgrade process
-		
-		# See https://matomo.org/faq/how-to-install/faq_18/
-		ynh_replace_string --match_string="$old_domain" --replace_string="$new_domain" --target_file="$install_dir/config/config.ini.php"
+	# config.ini.php is only created during the post-install process...
+	# it is therefore not present when the CI tests are carried out...
+	# This condition is only for CI test to go through the upgrade process
+
+	# See https://matomo.org/faq/how-to-install/faq_18/
+	ynh_replace --match="$old_domain" --replace="$new_domain" --file="$install_dir/config/config.ini.php"
 fi
 
 #=================================================
 # SETUP A CRON
 #=================================================
-ynh_script_progression --message="Setuping a cron..." --weight=1
+ynh_script_progression "Setuping a cron..."
 
 path=$new_path
 domain=$new_domain
 
-ynh_add_config --template="cron" --destination="/etc/cron.d/$app"
-chown root: "/etc/cron.d/$app"
-chmod 644 "/etc/cron.d/$app"
+ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Change of URL completed for $app" --last
+ynh_script_progression "Change of URL completed for $app"
