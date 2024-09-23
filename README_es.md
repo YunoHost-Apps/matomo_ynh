@@ -39,7 +39,7 @@ Matomo aims to be a Free software alternative to Google Analytics and is already
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/matomo_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/matomo_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
