@@ -21,7 +21,7 @@ Matomo is the leading Free/Libre open analytics platform. At the end of the five
 Matomo aims to be a Free software alternative to Google Analytics and is already used on more than 1,400,000 websites. Privacy is built-in!
 
 
-**分发版本：** 5.1.1~ynh1
+**分发版本：** 5.1.2~ynh1
 
 **演示：** <https://demo.matomo.org>
 
