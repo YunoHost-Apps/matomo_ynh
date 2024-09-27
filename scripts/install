@@ -21,10 +21,8 @@ ynh_setup_source --dest_dir="$install_dir"
 #=================================================
 ynh_script_progression "Configuring PHP-FPM..."
 
-# Create a dedicated PHP-FPM config
 ynh_config_add_phpfpm
 
-# Create a dedicated NGINX config
 ynh_config_add_nginx
 
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
