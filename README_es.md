@@ -21,7 +21,7 @@ Matomo is the leading Free/Libre open analytics platform. At the end of the five
 Matomo aims to be a Free software alternative to Google Analytics and is already used on more than 1,400,000 websites. Privacy is built-in!
 
 
-**Versión actual:** 5.1.1~ynh1
+**Versión actual:** 5.1.2~ynh1
 
 **Demo:** <https://demo.matomo.org>
 
@@ -39,7 +39,7 @@ Matomo aims to be a Free software alternative to Google Analytics and is already
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/matomo_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/matomo_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
