@@ -13,8 +13,6 @@ ynh_script_progression "Updating NGINX web server configuration..."
 ynh_config_change_url_nginx
 
 #=================================================
-# SPECIFIC MODIFICATIONS
-#=================================================
 # RECONFIGURING MATOMO
 #=================================================
 ynh_script_progression "Reconfiguring Matomo..."
