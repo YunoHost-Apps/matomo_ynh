@@ -31,9 +31,6 @@ fi
 #=================================================
 ynh_script_progression "Setuping a cron..."
 
-path=$new_path
-domain=$new_domain
-
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 
 #=================================================
