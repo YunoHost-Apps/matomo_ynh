@@ -21,7 +21,7 @@ Hij mag NIET handmatig aangepast worden.
 Matomo is the leading Free/Libre open analytics platform. At the end of the five-minute installation process, you will be given a JavaScript code. Simply copy and paste this tag on websites you wish to track and access your analytics reports in real-time.
 
 
-**Geleverde versie:** 5.2.1~ynh1
+**Geleverde versie:** 5.2.2~ynh1
 
 **Demo:** <https://demo.matomo.org>
 
