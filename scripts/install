@@ -1,19 +1,22 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# RETRIEVE ARGUMENTS FROM THE MANIFEST
+# INITIALIZE AND STORE SETTINGS
 #=================================================
-
-email=$(ynh_user_get_info --username=$admin --key=mail)
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Setting up source files..."
 
+# Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
 
 #=================================================
@@ -21,11 +24,24 @@ ynh_setup_source --dest_dir="$install_dir"
 #=================================================
 ynh_script_progression "Configuring PHP-FPM..."
 
+# Create a PHP-FPM config (with conf/extra_php-fpm.conf being appended to it)
 ynh_config_add_phpfpm
 
+# Create a dedicated NGINX config using the conf/nginx.conf template
 ynh_config_add_nginx
 
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
+
+#=================================================
+# SETUP APPLICATION WITH CURL
+#=================================================
+
+# Installation with curl
+ynh_script_progression "Finalizing installation..."
+ynh_local_curl "/index.php?action=databaseSetup" "host=127.0.0.1" "username=$db_user" "password=$db_pwd" "dbname=$db_name" "tables_prefix=matomo_" "adapter=PDO\\MYSQL"
+ynh_local_curl "/index.php?action=setupSuperUser&module=Installation" "login=$admin" "password=$password" "password_bis=$password" "email=$(ynh_user_get_info --username=$admin --key=mail)" "subscribe_newsletter_piwikorg=0" "subscribe_newsletter_professionalservices=0"
+ynh_local_curl "/index.php?action=firstWebsiteSetup&module=Installation" "siteName=$domain" "url=https://$domain$path" "timezone=$(cat /etc/timezone)" "ecommerce=0"
+ynh_local_curl "/index.php?action=finished&clientProtocol=https&module=Installation" "do_not_track=1" "anonymise_ip=1"
 
 #=================================================
 # END OF SCRIPT
