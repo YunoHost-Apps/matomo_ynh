@@ -1,3 +1,5 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
 packaging_format = 2
 
 id = "matomo"
@@ -5,7 +7,7 @@ name = "Matomo"
 description.en = "Analytics platform for measuring Web statistics"
 description.fr = "Plateforme d'analyse de mesure de statistiques Web"
 
-version = "5.2.2~ynh1"
+version = "5.2.2~ynh2"
 
 maintainers = []
 
@@ -23,6 +25,7 @@ architectures = "all"
 multi_instance = true
 
 ldap = false
+
 sso = false
 
 disk = "50M"
@@ -46,15 +49,18 @@ ram.runtime = "50M"
     [install.admin]
     type = "user"
 
+    [install.password]
+    type = "password"
+
 [resources]
 
     [resources.sources]
 
-        [resources.sources.main]
-        url = "https://github.com/matomo-org/matomo/releases/download/5.2.2/matomo-5.2.2.tar.gz"
-        sha256 = "644c33fca2996704c5b0a7f047488a64cd6d6b80945c9b168015e291afa98dbd"
-        autoupdate.strategy = "latest_github_release"
-        autoupdate.asset = "^matomo-.*tar.gz$"
+    [resources.sources.main]
+    url = "https://github.com/matomo-org/matomo/releases/download/5.2.2/matomo-5.2.2.tar.gz"
+    sha256 = "644c33fca2996704c5b0a7f047488a64cd6d6b80945c9b168015e291afa98dbd"
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.asset = "^matomo-.*tar.gz$"
 
     [resources.system_user]
 
@@ -69,4 +75,3 @@ ram.runtime = "50M"
 
     [resources.database]
     type = "mysql"
-    
