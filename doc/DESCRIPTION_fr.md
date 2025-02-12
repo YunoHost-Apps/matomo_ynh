@@ -1,3 +1,1 @@
 Matomo est la principale plateforme d'analyse ouverte Free/Libre. À la fin du processus d'installation de cinq minutes, vous recevrez un code JavaScript. Copiez et collez simplement cette balise sur les sites Web que vous souhaitez suivre et accédez à vos rapports d'analyse en temps réel.
-
-Matomo se veut une alternative logicielle gratuite à Google Analytics et est déjà utilisé sur plus de 1 400 000 sites Web. La confidentialité est intégrée !

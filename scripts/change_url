@@ -1,40 +1,31 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
-
-email=$(ynh_user_get_info --username=$admin --key=mail)
 
 #=================================================
 # MODIFY URL IN NGINX CONF
 #=================================================
 ynh_script_progression "Updating NGINX web server configuration..."
 
+# this will most likely adjust NGINX config correctly
 ynh_config_change_url_nginx
 
-#=================================================
-# SPECIFIC MODIFICATIONS
 #=================================================
 # RECONFIGURING MATOMO
 #=================================================
 ynh_script_progression "Reconfiguring Matomo..."
 
-if [[ -f "$install_dir/config/config.ini.php" ]]; then
-	# config.ini.php is only created during the post-install process...
-	# it is therefore not present when the CI tests are carried out...
-	# This condition is only for CI test to go through the upgrade process
-
-	# See https://matomo.org/faq/how-to-install/faq_18/
-	ynh_replace --match="$old_domain" --replace="$new_domain" --file="$install_dir/config/config.ini.php"
-fi
+ynh_replace --match="$old_domain" --replace="$new_domain" --file="$install_dir/config/config.ini.php"
 
 #=================================================
 # SETUP A CRON
 #=================================================
 ynh_script_progression "Setuping a cron..."
-
-path=$new_path
-domain=$new_domain
 
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 
