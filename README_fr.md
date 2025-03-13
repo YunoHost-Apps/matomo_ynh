@@ -21,7 +21,7 @@ Il NE doit PAS être modifié à la main.
 Matomo est la principale plateforme d'analyse ouverte Free/Libre. À la fin du processus d'installation de cinq minutes, vous recevrez un code JavaScript. Copiez et collez simplement cette balise sur les sites Web que vous souhaitez suivre et accédez à vos rapports d'analyse en temps réel.
 
 
-**Version incluse :** 5.2.2~ynh2
+**Version incluse :** 5.3.0~ynh1
 
 **Démo :** <https://demo.matomo.org>
 
