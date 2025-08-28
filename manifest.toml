@@ -7,7 +7,7 @@ name = "Matomo"
 description.en = "Analytics platform for measuring Web statistics"
 description.fr = "Plateforme d'analyse de mesure de statistiques Web"
 
-version = "5.3.1~ynh1"
+version = "5.4.0~ynh1"
 
 maintainers = []
 
@@ -57,8 +57,8 @@ ram.runtime = "50M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/matomo-org/matomo/releases/download/5.3.1/matomo-5.3.1.tar.gz"
-    sha256 = "ca71b9336d584331a1208d7d92626fd32e4bdc722811d7f7d1d640fa749cb980"
+    url = "https://github.com/matomo-org/matomo/releases/download/5.4.0/matomo-5.4.0.tar.gz"
+    sha256 = "3d1658a8905e6c3b23793f56040ad15f718a15b5b94ed7a357614ea3c8e368c5"
     autoupdate.strategy = "latest_github_release"
     autoupdate.asset = "^matomo-.*tar.gz$"
 
@@ -71,7 +71,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server, php8.3-curl, php8.3-gd, php8.3-cli, php8.3-mysql, php8.3-xml, php8.3-mbstring"
+    packages = "mariadb-server, php8.4-curl, php8.4-gd, php8.4-cli, php8.4-mysql, php8.4-xml, php8.4-mbstring"
 
     [resources.database]
     type = "mysql"
