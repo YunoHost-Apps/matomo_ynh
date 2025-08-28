@@ -19,6 +19,7 @@ Analytics platform for measuring Web statistics
 <a href="https://github.com/YunoHost-Apps/matomo_ynh/issues"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_report_an_issue.svg"/></a>
 </div>
 
+
 ## Screenshots
 ![Screenshot of Matomo](./doc/screenshots/screenshot.png)
 
