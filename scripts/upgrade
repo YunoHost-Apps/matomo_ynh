@@ -20,7 +20,7 @@ if [[ ! -f "$install_dir/config/config.ini.php" ]]; then
 else
 	ynh_setup_source --dest_dir="$install_dir" --keep="config/config.ini.php" --full_replace
 
-	ynh_exec_as_app php${php_version} $install_dir/console core:update --no-interaction
+	ynh_exec_as_app php${php_version} $install_dir/console core:update --no-interaction --yes
 fi
 
 #=================================================
