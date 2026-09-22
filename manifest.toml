@@ -7,7 +7,7 @@ name = "Matomo"
 description.en = "Analytics platform for measuring Web statistics"
 description.fr = "Plateforme d'analyse de mesure de statistiques Web"
 
-version = "5.13.0~ynh1"
+version = "5.14.0~ynh1"
 
 maintainers = []
 
@@ -19,7 +19,7 @@ admindoc = "https://matomo.org/docs"
 code = "https://github.com/matomo-org/matomo"
 
 [integration]
-yunohost = ">= 12.1.38"
+yunohost = ">= 12.1.40"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
@@ -56,8 +56,8 @@ ram.runtime = "50M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/matomo-org/matomo/releases/download/5.13.0/matomo-5.13.0.tar.gz"
-    sha256 = "2877f8ce4da93eb8d202f10df5fd26de39a57a481cf0a9d91af5d8e3dbf388fb"
+    url = "https://github.com/matomo-org/matomo/releases/download/5.14.0/matomo-5.14.0.tar.gz"
+    sha256 = "f356720d4e4bfb4daf24a2ea8d786fa8cb5434a3cf7ae4f4ad0901e85658c27e"
     autoupdate.strategy = "latest_github_release"
     autoupdate.asset = "^matomo-.*tar.gz$"
 
@@ -70,7 +70,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server, php8.4-curl, php8.4-gd, php8.4-cli, php8.4-mysql, php8.4-xml, php8.4-mbstring"
+    packages = "mariadb-server, php8.5-curl, php8.5-gd, php8.5-cli, php8.5-mysql, php8.5-xml, php8.5-mbstring"
 
     [resources.database]
     type = "mysql"
